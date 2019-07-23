@@ -1,0 +1,7 @@
+.item:hover {
+    border: 1px solid skyblue;
+}
+img {
+    width: 100%;
+    /* height: auto; */
+}

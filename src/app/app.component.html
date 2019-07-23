@@ -1,0 +1,13 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container-fluid header">
+  <div class="row">
+    <div [ngClass]='{"col-2" : !isShoppingModule(), "col-1" : isShoppingModule()}'></div>
+    <header class="col-10 py-3">
+      <h1 class="float-left">Welcome to NeoSoft</h1>
+      <p class="float-right mr-3">{{lStorage.getUser()}} <i class="material-icons" [routerLink]="['/shopping', 'cart']">
+        shopping_cart
+        </i> <span class="badge badge-light" *ngIf = 'cart.totalQuantity > 0'>{{cart.cart.length}}</span> </p>
+    </header>
+  </div>
+</div>
+<router-outlet ></router-outlet>

@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 pb-3">
+      <app-shopping-carousel></app-shopping-carousel>
+    </div>
+  </div>
+  <div class="container-fluid" *ngIf='categories'>
+    <div class="row" *ngFor='let item of categories'>
+      <div class="col-12 py-3">
+        <div class="container-fluid overflow-hidden">
+          <h3 class="float-left">
+            {{item.name}}
+          </h3>
+          <button type="button" class="btn btn-success float-right" [routerLink]="['/products', item.name, item._id]">
+            View All
+          </button>
+        </div>
+
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-3 py-3" *ngFor='let prod of item.data'>
+              <a>
+                <img [src]="prod.images[0]" alt="Mobile Phone" width="400" height="300">
+              </a>
+              <div class=" text-center py-2">
+                <h5>{{prod.name}}</h5>
+              </div>
+              <div class=" text-center">
+                <p class="text-secondary">{{'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, minus
+                  nam recusandae voluptatum' | summary:75}}</p>
+                <p class="text-primary">
+                  <del class="text-secondary">{{prod.price | currency : 'INR'}} </del>
+                  <span class="text-primary mx-2"> {{(prod.price * (1 -prod.discount / 100)) | currency : 'INR'}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,8 @@
+.item:hover {
+    border: 1px solid skyblue;
+}
+img {
+    width: 100%;
+    object-fit: contain;
+    max-height: 120px;
+}

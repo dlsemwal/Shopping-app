@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.min.css";
+html, body {
+	height : 100%;
+}
+a {
+  cursor: pointer;
+}
+li:hover {
+  background: #f7631b;
+  padding-left: 15px;
+}
+ul {
+  padding: 0;
+}
+.active {
+  background: #f7631b;
+
+}
+.text-orange {
+  color: #f7631b;
+}
+.bg-orange {
+  background: #f7631b;
+}
