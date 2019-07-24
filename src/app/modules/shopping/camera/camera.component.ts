@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from '../../../shared/services/common.service';
-import { CartService } from '../../../shared/services/cart.service';
+import { CommonService } from '../../../core/services/common.service';
+import { CartService } from '../../../core/services/cart.service';
 @Component({
   selector: 'app-camera',
   templateUrl: './camera.component.html',

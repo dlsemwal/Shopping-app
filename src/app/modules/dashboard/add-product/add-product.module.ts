@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AddProductRoutingModule } from './add-product-routing.module';
 import { AddProductComponent } from './add-product/add-product.component';
-import { CommonService } from '../../../shared/services/common.service';
+import { CommonService } from '../../../core/services/common.service';
 
 @NgModule({
   declarations: [AddProductComponent],

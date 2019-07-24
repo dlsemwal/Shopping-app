@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService } from '../../../../shared/services/http/http.service';
 import { log } from 'util';
+import { HttpService } from '../../../../core/http/http.service';
 
 @Component({
   selector: 'app-list',

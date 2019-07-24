@@ -8,11 +8,11 @@ export class LStorageService {
   constructor() { }
 
   setToken(token) {
-    localStorage.setItem('token', token);
+    localStorage.setItem('Authorization', token);
   }
 
   getToken() {
-    return localStorage.getItem('token');
+    return localStorage.getItem('Authorization');
   }
 
   setUser(user) {

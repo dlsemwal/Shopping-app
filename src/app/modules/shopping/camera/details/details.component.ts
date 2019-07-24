@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CommonService } from '../../../../shared/services/common.service';
-
+import { CommonService } from '../../../../core/services/common.service';
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',

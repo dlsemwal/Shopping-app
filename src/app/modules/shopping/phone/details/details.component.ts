@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { productServer } from '../../../../configs/config';
-import { CommonService } from '../../../../shared/services/common.service';
+import { CommonService } from '../../../../core/services/common.service';
 
 @Component({
   selector: 'app-details',
@@ -14,7 +14,8 @@ export class DetailsComponent implements OnInit {
   constructor(private common: CommonService, private route: ActivatedRoute) {
     route.params.subscribe(params => {
       this.getProduct(params.id);
-    });
+    
+  });
 
   }
   getProduct(id) {

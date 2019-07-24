@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { LStorageService } from './l-storage.service';
-import { config } from '../../configs/config';
+import { loginUrl } from '../../configs/config';
+import { LStorageService } from '../services/l-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -26,19 +26,20 @@ export class AuthService {
   }
 
   login(loginData): void {
-    this.http.post(config.loginUrl, loginData).subscribe((res: any) => {
-      console.log(config.loginUrl, res);
-      this.lStorage.setToken(res.id);
+    this.http.post(loginUrl, loginData).subscribe((res: any) => {
+      console.log(loginUrl, res);
+      this.lStorage.setToken(res.data.token);
+      this.lStorage.setUser(res.data.user.first_name);
       this.router.navigate(['/dashboard']);
-      this.lStorage.setUser(res.user.full_name);
     });
 
   }
 
 
   logout(): void {
+
     this.clear();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth']);
   }
 
 }

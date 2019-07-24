@@ -6,17 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './modules/auth/login/login.component';
 import { HeaderComponent } from './core/header/header.component';
-import { AuthService } from './shared/services/auth.service';
-import { CommonService } from './shared/services/common.service';
-import { CartService } from './shared/services/cart.service';
+import { CommonService } from './core/services/common.service';
+import { CartService } from './core/services/cart.service';
+import { HttpReqIntercepter } from './core/interceptors/http-req.service';
+import { AuthService } from './core/authentication/auth.service';
 
 
 @NgModule({
   declarations: [
-    AppComponent, 
-    LoginComponent,
+    AppComponent,
     HeaderComponent,
   ],
   imports: [
@@ -27,9 +26,10 @@ import { CartService } from './shared/services/cart.service';
   ],
   providers: [
     AuthService, [
-      { provide: HTTP_INTERCEPTORS, useClass: CommonService, multi: true }
+      { provide: HTTP_INTERCEPTORS, useClass: HttpReqIntercepter, multi: true }
     ],
     CartService,
+    CommonService
 
   ],
   bootstrap: [AppComponent]

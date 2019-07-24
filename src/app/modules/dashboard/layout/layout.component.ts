@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../../shared/services/auth.service';
-import { CommonService } from '../../../shared/services/common.service';
+import { AuthService } from '../../../core/authentication/auth.service';
+import { CommonService } from '../../../core/services/common.service';
 
 @Component({
   selector: 'app-layout',

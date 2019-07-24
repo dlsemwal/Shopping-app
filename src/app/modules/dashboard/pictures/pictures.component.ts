@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CommonService } from '../../../shared/services/common.service';
 import { config } from '../../../configs/config';
+import { CommonService } from '../../../core/services/common.service';
 
 @Component({
   selector: 'app-pictures',

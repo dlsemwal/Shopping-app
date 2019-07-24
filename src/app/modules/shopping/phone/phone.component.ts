@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from '../../../shared/services/common.service';
-import { CartService } from '../../../shared/services/cart.service';
 import { productServer } from '../../../configs/config';
+import { CommonService } from '../../../core/services/common.service';
+import { CartService } from '../../../core/services/cart.service';
 
 @Component({
   selector: 'app-phone',

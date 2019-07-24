@@ -22,3 +22,5 @@ export const productServer = `${server}/categories/dashboard-products`;
 export const productByIdUrl = function (id) {
     return `${server}/products/${id}/details`
 }
+export const loginUrl = `${server}/auth/login`;
+export const cartUrl = `${server}/carts`;

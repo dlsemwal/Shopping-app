@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from '../../../shared/services/common.service';
-import { HttpService } from '../../../shared/services/http/http.service';
+import { HttpService } from '../../../core/http/http.service';
+import { CommonService } from '../../../core/services/common.service';
 
 @Component({
   selector: 'app-layout',
