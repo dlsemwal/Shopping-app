@@ -15,12 +15,12 @@ export const config = {
 };
 
 
-const server = 'http://sandip-shopping-app.herokuapp.com/api'
+const server = 'http://sandip-shopping-app.herokuapp.com/api';
 export const productsUrlByCatId = `${server}/products/byCategoryId/`;
-export const categoriesUrl = `${server}/categories`
+export const categoriesUrl = `${server}/categories`;
 export const productServer = `${server}/categories/dashboard-products`;
-export const productByIdUrl = function (id) {
-    return `${server}/products/${id}/details`
-}
+export const productByIdUrl = (id) => {
+    return `${server}/products/${id}/details`;
+};
 export const loginUrl = `${server}/auth/login`;
 export const cartUrl = `${server}/carts`;

@@ -10,7 +10,7 @@ const routes: Routes = [
     children: [
       { path: '', component: LayoutComponent },
       { path: 'cart', component: CartComponent },
-      { path: 'products/:categoryName/:categoryId', loadChildren:'./products/products.module#ProductsModule'}
+      { path: 'products/:categoryName/:categoryId', loadChildren: './products/products.module#ProductsModule' }
 
     ]
   }

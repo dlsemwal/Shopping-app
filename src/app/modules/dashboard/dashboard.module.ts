@@ -13,7 +13,6 @@ import { AddItemsComponent } from './menu-items/add-items/add-items.component';
 
 import { AuthService } from 'src/app/core/authentication/auth.service';
 import { AuthGuard } from '../../core/guards/auth-guard.service';
-import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +22,7 @@ import { CartComponent } from './cart/cart.component';
     PicturesComponent,
     AddItemsComponent,
     CommentsComponent,
-    AboutComponent,
-    CartComponent
+    AboutComponent
   ],
   imports: [
     CommonModule,
