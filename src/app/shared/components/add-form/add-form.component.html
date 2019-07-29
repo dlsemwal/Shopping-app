@@ -1,0 +1,174 @@
+<form #addForm='ngForm'
+ [formGroup]='form'>
+
+  <div class="form-group">
+    <label for="name">
+      Name of Product
+    </label>
+    <input
+      name="name"
+      type="text"
+      id="name"
+      class="form-control"
+      formControlName='name' />
+    <div
+      class="text-success" 
+      *ngIf='name.touched && name.valid'>
+        Looks good!
+    </div>
+    <div
+      class='text-danger' 
+      *ngIf='name.touched && name.invalid'>
+        Required input!
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="price">
+      Price of Product
+    </label>
+    <input
+      name="price"
+      type="number"
+      id="price"
+      class="form-control"
+      placeholder="&#8377;"
+      formControlName='price' />
+    <div
+      class="text-success" 
+      *ngIf='price.touched && price.valid'>
+        Looks good!
+    </div>
+    <div
+      class='text-danger' 
+      *ngIf='price.touched && price.invalid'>
+        Required input!
+    </div>
+  </div>
+
+  <div
+   class="form-group"
+   *ngIf='categories'>
+    <label for="category_id">
+      Category
+    </label>
+    <select
+      name="category_id"
+      id="category_id"
+      class="form-control"
+      formControlName='category_id'>
+        <option
+          selected
+          disabled>
+          Select Category
+        </option>
+        <option
+          *ngFor='let item of categories'
+          [value]='item._id'>
+            {{item.name}}
+        </option>
+    </select>
+    <div
+      class="text-success" 
+      *ngIf='category_id.touched && category_id.valid'>
+        Looks good!
+    </div>
+    <div
+      class='text-danger' 
+      *ngIf='category_id.touched && category_id.invalid'>
+        Required input!
+    </div>
+  </div>
+
+  <div
+   class="form-group"
+   *ngIf='brandList?.length > 0'>
+    <label for="brand">
+      Brand
+    </label>
+    <select
+      name="brand"
+      id="brand"
+      class="form-control"
+      formControlName='brand'>
+        <option disabled>
+          Select Brand
+        </option>
+        <option
+          *ngFor='let item of brandList' 
+          [value]='item._id'>
+            {{item.name}}
+        </option>
+    </select>
+    <div
+      class="text-success" 
+      *ngIf='brand.touched && brand.valid'>
+        Looks good!
+    </div>
+    <div
+      class='text-danger' 
+      *ngIf='brand.touched && brand.invalid'>
+        Required input!
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label for="discount">
+      Discount
+    </label>
+    <input
+      name="discount"
+      type="number"
+      id="discount"
+      class="form-control"
+      placeholder="%"
+      formControlName='discount' />
+    <div
+      class="text-success" 
+      *ngIf='discount.touched && discount.valid'>
+        Looks good!
+    </div>
+    <div
+      class='text-danger' 
+      *ngIf='discount.touched && discount.invalid'>
+        Required input!
+    </div>
+  </div>
+
+  <div class="form-group">
+      <label for="images">
+        Images
+      </label>
+      <input
+        name="images"
+        type="text"
+        id="images"
+        class="form-control"
+        (keyup.enter) = 'addImage(img)' #img/>
+      <ul class="list-group">
+        <li 
+          *ngFor = 'let img of images.controls'
+          (click)='removeImage(img)'
+          class="list-group-item">
+            {{img.value}}
+        </li>
+      </ul>
+      <div
+        class="text-success" 
+        *ngIf='images.touched && images.valid'>
+          Looks good!
+      </div>
+      <div
+        class='text-danger' 
+        *ngIf='images.touched && images.invalid'>
+          Required input!
+      </div>
+    </div>
+
+  
+  <input type="submit">
+</form>
+<button class="btn btn-success" (click)='onClick()'>
+  Get data
+</button>
