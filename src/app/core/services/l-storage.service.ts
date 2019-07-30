@@ -19,7 +19,7 @@ export class LStorageService {
     localStorage.setItem('user', user);
   }
 
-  getUser() {
+  get getUser() {
     return localStorage.getItem('user');
   }
 

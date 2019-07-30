@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { loginUrl } from '../../configs/config';
+import { loginUrl, signupUrl } from '../../configs/config';
 import { LStorageService } from '../services/l-storage.service';
 
 @Injectable({
@@ -30,16 +30,21 @@ export class AuthService {
       console.log(loginUrl, res);
       this.lStorage.setToken(res.data.token);
       this.lStorage.setUser(res.data.user.first_name);
-      this.router.navigate(['/dashboard']);
     });
 
+  }
+  signup(data) {
+    this.http.post(signupUrl, data).subscribe(
+      (res: any) => console.log(res),
+      (err) => console.log(err)
+    );
   }
 
 
   logout(): void {
 
     this.clear();
-    this.router.navigate(['/auth']);
+    this.router.navigate(['/']);
   }
 
 }
