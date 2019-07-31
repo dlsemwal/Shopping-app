@@ -3,13 +3,13 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class AddFormConst {
+export class CONST {
   valid = 'Looks good!';
   invalidRequired = 'Required input!';
   submitBtn = 'Add Product:';
   name = 'Name of Product:';
   price = 'Price of Product:';
-  category = 'Category of Product:';
+  category_id = 'Category of Product:';
   discount = 'Discount:';
   brand = 'Brand:';
   images = 'Add Images:';
@@ -24,7 +24,7 @@ export class AddFormConst {
   size = 'Screen size:';
   resolution = 'Max. resolution:';
   resolution_type = 'Resolution Type:';
-  other_features = 'Other Features:'
+  other_features = 'Other Features:';
   brightness = 'Brightness';
   contrast_ratio = 'Contrast Ratio:';
   analog_tv_reception = 'Analog Tv Reception?';

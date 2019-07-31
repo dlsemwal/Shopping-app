@@ -23,3 +23,12 @@ ul {
 .bg-orange {
   background: #f7631b;
 }
+.btn-orange {
+  background: #f7631b;
+  color: white;
+  display: inline-block;
+}
+.btn-orange:hover {
+  color: #f7631b;
+  background: white;
+}

@@ -11,6 +11,8 @@ import { CommonService } from './core/services/common.service';
 import { CartService } from './core/services/cart.service';
 import { HttpReqIntercepter } from './core/interceptors/http-req.service';
 import { AuthService } from './core/authentication/auth.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import { AuthService } from './core/authentication/auth.service';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgbModule,
+    SharedModule
   ],
   providers: [
     AuthService, [

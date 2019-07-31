@@ -5,9 +5,9 @@ import { LoginGuard } from './core/guards/login-guard.service';
 const routes: Routes = [
   { path: 'auth', /*canActivate: [LoginGuard],*/ loadChildren: './modules/auth/auth.module#AuthModule' },
   { path: 'cart', loadChildren: './modules/cart/cart.module#CartModule' },
-  { path: 'dashboard', loadChildren: './modules/dashboard/dashboard.module#DashboardModule' },
+  { path: 'manage', loadChildren: './modules/manage-products/manage-products.module#ManageProductsModule' },
   { path: '', loadChildren: './modules/shopping/shopping.module#ShoppingModule' },
-  // { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
+  { path: 'shared', loadChildren: './shared/shared.module#SharedModule' }
 
 ];
 

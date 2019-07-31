@@ -1,174 +1,445 @@
-<form #addForm='ngForm'
- [formGroup]='form'>
+<form #addForm='ngForm' [formGroup]='form' (ngSubmit)='onSubmit()'>
 
-  <div class="form-group">
-    <label for="name">
-      Name of Product
-    </label>
-    <input
-      name="name"
-      type="text"
-      id="name"
-      class="form-control"
-      formControlName='name' />
-    <div
-      class="text-success" 
-      *ngIf='name.touched && name.valid'>
-        Looks good!
+  <div class="row">
+
+    <div class="form-group col">
+      <label for="name">
+        {{CONST.name}}
+      </label>
+      <input name="name" type="text" id="name" class="form-control" formControlName='name' />
+      <div class="text-success" *ngIf='name.touched && name.valid'>
+        {{CONST.valid}}
+      </div>
+      <div class='text-danger' *ngIf='name.touched && name.invalid'>
+        {{CONST.invalidRequired}}
+      </div>
     </div>
-    <div
-      class='text-danger' 
-      *ngIf='name.touched && name.invalid'>
-        Required input!
+    <div class="form-group col">
+      <label for="price">
+        {{CONST.price}}
+      </label>
+      <input name="price" type="number" id="price" class="form-control" placeholder="&#8377;" formControlName='price' />
+      <div class="text-success" *ngIf='price.touched && price.valid'>
+        {{CONST.valid}}
+      </div>
+      <div class='text-danger' *ngIf='price.touched && price.invalid'>
+        {{CONST.invalidRequired}}
+      </div>
     </div>
+
+
   </div>
 
-  <div class="form-group">
-    <label for="price">
-      Price of Product
-    </label>
-    <input
-      name="price"
-      type="number"
-      id="price"
-      class="form-control"
-      placeholder="&#8377;"
-      formControlName='price' />
-    <div
-      class="text-success" 
-      *ngIf='price.touched && price.valid'>
-        Looks good!
-    </div>
-    <div
-      class='text-danger' 
-      *ngIf='price.touched && price.invalid'>
-        Required input!
-    </div>
-  </div>
+  <div class="row">
 
-  <div
-   class="form-group"
-   *ngIf='categories'>
-    <label for="category_id">
-      Category
-    </label>
-    <select
-      name="category_id"
-      id="category_id"
-      class="form-control"
-      formControlName='category_id'>
-        <option
-          selected
-          disabled>
+    <div class="form-group col" *ngIf='categories'>
+      <label for="category_id">
+        {{CONST.category_id}}
+      </label>
+      <select name="category_id" id="category_id" class="form-control" formControlName='category_id'>
+        <option selected disabled>
           Select Category
         </option>
-        <option
-          *ngFor='let item of categories'
-          [value]='item._id'>
-            {{item.name}}
+        <option *ngFor='let item of categories' [value]='item._id'>
+          {{item.name}}
         </option>
-    </select>
-    <div
-      class="text-success" 
-      *ngIf='category_id.touched && category_id.valid'>
-        Looks good!
+      </select>
+      <div class="text-success" *ngIf='category_id.touched && category_id.valid'>
+        {{CONST.valid}}
+      </div>
+      <div class='text-danger' *ngIf='category_id.touched && category_id.invalid'>
+        {{CONST.invalidRequired}}
+      </div>
     </div>
-    <div
-      class='text-danger' 
-      *ngIf='category_id.touched && category_id.invalid'>
-        Required input!
-    </div>
-  </div>
 
-  <div
-   class="form-group"
-   *ngIf='brandList?.length > 0'>
-    <label for="brand">
-      Brand
-    </label>
-    <select
-      name="brand"
-      id="brand"
-      class="form-control"
-      formControlName='brand'>
+    <div class="form-group col" *ngIf='brandList?.length > 0'>
+      <label for="brand">
+        {{CONST.brand}}
+      </label>
+      <select name="brand" id="brand" class="form-control" formControlName='brand'>
         <option disabled>
           Select Brand
         </option>
-        <option
-          *ngFor='let item of brandList' 
-          [value]='item._id'>
-            {{item.name}}
+        <option *ngFor='let item of brandList' [value]='item._id'>
+          {{item.name}}
         </option>
-    </select>
-    <div
-      class="text-success" 
-      *ngIf='brand.touched && brand.valid'>
-        Looks good!
+      </select>
+      <div class="text-success" *ngIf='brand.touched && brand.valid'>
+        {{CONST.valid}}
+      </div>
+      <div class='text-danger' *ngIf='brand.touched && brand.invalid'>
+        {{CONST.invalidRequired}}
+      </div>
     </div>
-    <div
-      class='text-danger' 
-      *ngIf='brand.touched && brand.invalid'>
-        Required input!
-    </div>
-  </div>
-
-
-  <div class="form-group">
-    <label for="discount">
-      Discount
-    </label>
-    <input
-      name="discount"
-      type="number"
-      id="discount"
-      class="form-control"
-      placeholder="%"
-      formControlName='discount' />
-    <div
-      class="text-success" 
-      *ngIf='discount.touched && discount.valid'>
-        Looks good!
-    </div>
-    <div
-      class='text-danger' 
-      *ngIf='discount.touched && discount.invalid'>
-        Required input!
-    </div>
-  </div>
-
-  <div class="form-group">
-      <label for="images">
-        Images
+    <div class="form-group col">
+      <label for="discount">
+        {{CONST.discount}}
       </label>
-      <input
-        name="images"
-        type="text"
-        id="images"
-        class="form-control"
-        (keyup.enter) = 'addImage(img)' #img/>
+      <input name="discount" type="number" id="discount" class="form-control" placeholder="%"
+        formControlName='discount' />
+      <div class="text-success" *ngIf='discount.touched && discount.valid'>
+        {{CONST.valid}}
+      </div>
+      <div class='text-danger' *ngIf='discount.touched && discount.invalid'>
+        {{CONST.invalidRequired}}
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group col">
+      <label for="images">
+        {{CONST.images}}
+      </label>
+      <input name="images" type="text" id="images" class="form-control" (keyup.enter)='addImage(img)' #img />
       <ul class="list-group">
-        <li 
-          *ngFor = 'let img of images.controls'
-          (click)='removeImage(img)'
-          class="list-group-item">
-            {{img.value}}
+        <li *ngFor='let img of images.controls' (click)='removeImage(img)' class="list-group-item">
+          {{img.value}}
         </li>
       </ul>
-      <div
-        class="text-success" 
-        *ngIf='images.touched && images.valid'>
-          Looks good!
+      <div class="text-success" *ngIf='images.touched && images.valid'>
+        {{CONST.valid}}
       </div>
-      <div
-        class='text-danger' 
-        *ngIf='images.touched && images.invalid'>
-          Required input!
+      <div class='text-danger' *ngIf='images.touched && images.invalid'>
+        {{CONST.invalidRequired}}
       </div>
     </div>
 
-  
+    <div class="form-group col">
+      <label for="warranty">
+        {{CONST.warranty}}
+      </label>
+      <input id="warranty" type="text" class="form-control" formControlName='warranty'>
+    </div>
+  </div>
+
+  <div formGroupName="general">
+
+    <div class="row">
+      <div class="form-group col">
+        <label for="in_the_box">
+          {{CONST.in_the_box}}
+        </label>
+        <input id="in_the_box" type="text" class="form-control" formControlName='in_the_box'>
+      </div>
+    </div>
+
+    <div class="row">
+
+
+      <div class="form-group col">
+        <label for="model_name">
+          {{CONST.model_name}}
+        </label>
+        <input id="model_name" type="text" class="form-control" formControlName='model_name'>
+      </div>
+
+      <div class="form-group col">
+        <label for="model_number">
+          {{CONST.model_number}}
+        </label>
+        <input id="model_number" type="text" class="form-control" formControlName='model_number'>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col">
+        <label for="color">
+          {{CONST.color}}
+        </label>
+        <input id="color" type="text" class="form-control" formControlName='color'>
+      </div>
+
+      <div class="form-group col">
+        <label for="sim_type">
+          {{CONST.sim_type}}
+        </label>
+        <input id="sim_type" type="text" class="form-control" formControlName='sim_type'>
+      </div>
+
+      <div class="form-group col">
+        <label for="touchScreen">
+          {{CONST.touchScreen}}
+        </label>
+        <input id="touchScreen" type="text" class="form-control" formControlName='touchScreen'>
+      </div>
+
+      <div class="form-group col">
+        <label for="quick_charging">
+          {{CONST.quick_charging}}
+        </label>
+        <input id="quick_charging" type="text" class="form-control" formControlName='quick_charging'>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div formGroupName="display_feature">
+
+    <div class="row">
+
+      <div class="form-group col">
+        <label for="size">
+          {{CONST.size}}
+        </label>
+        <input id="size" type="text" class="form-control" formControlName='size'>
+      </div>
+
+      <div class="form-group col">
+        <label for="resolution">
+          {{CONST.resolution}}
+        </label>
+        <input id="resolution" type="text" class="form-control" formControlName='resolution'>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col">
+        <label for="resolution_type">
+          {{CONST.resolution_type}}
+        </label>
+        <input id="resolution_type" type="text" class="form-control" formControlName='resolution_type'>
+      </div>
+
+      <div class="form-group col">
+        <label for="brightness">
+          {{CONST.brightness}}
+        </label>
+        <input id="brightness" type="text" class="form-control" formControlName='brightness'>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col">
+        <label for="contrast_ratio">
+          {{CONST.contrast_ratio}}
+        </label>
+        <input id="contrast_ratio" type="text" class="form-control" formControlName='contrast_ratio'>
+      </div>
+
+      <div class="form-group col">
+        <label for="analog_tv_reception">
+          {{CONST.analog_tv_reception}}
+        </label>
+        <input id="analog_tv_reception" type="text" class="form-control" formControlName='analog_tv_reception'>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col">
+        <label for="view_angle">
+          {{CONST.view_angle}}
+        </label>
+        <input id="view_angle" type="text" class="form-control" formControlName='view_angle'>
+      </div>
+
+      <div class="form-group col">
+        <label for="panel_type">
+          {{CONST.panel_type}}
+        </label>
+        <input id="panel_type" type="text" class="form-control" formControlName='panel_type'>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col">
+        <label for="digital_noise_filter">
+          {{CONST.digital_noise_filter}}
+        </label>
+        <input id="digital_noise_filter" type="text" class="form-control" formControlName='digital_noise_filter'>
+      </div>
+
+      <div class="form-group col">
+        <label for="aspect_ratio">
+          {{CONST.aspect_ratio}}
+        </label>
+        <input id="aspect_ratio" type="text" class="form-control" formControlName='aspect_ratio'>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="form-group col">
+        <label for="other_features">
+          {{CONST.other_features}}
+        </label>
+        <input id="other_features" type="text" class="form-control" formControlName='other_features'>
+      </div>
+    </div>
+
+  </div>
+
+
+  <div formGroupName="memory_storage">
+
+    <div class="form-group">
+      <label for="internal_storage">
+        {{CONST.internal_storage}}
+      </label>
+      <input id="internal_storage" type="text" class="form-control" formControlName='internal_storage'>
+    </div>
+
+    <div class="form-group">
+      <label for="ram">
+        {{CONST.ram}}
+      </label>
+      <input id="ram" type="text" class="form-control" formControlName='ram'>
+    </div>
+
+    <div class="form-group">
+      <label for="expandable">
+        {{CONST.expandable}}
+      </label>
+      <input id="expandable" type="text" class="form-control" formControlName='expandable'>
+    </div>
+
+  </div>
+
+
+  <div formGroupName="camera">
+
+    <div class="form-group">
+      <label for="primary_camera">
+        {{CONST.primary_camera}}
+      </label>
+      <input id="primary_camera" type="text" class="form-control" formControlName='primary_camera'>
+    </div>
+
+    <div class="form-group">
+      <label for="secondary_camera">
+        {{CONST.secondary_camera}}
+      </label>
+      <input id="secondary_camera" type="text" class="form-control" formControlName='secondary_camera'>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="flash" formControlName='flash'>
+      <label class="form-check-label" for="flash">
+        {{CONST.flash}}
+      </label>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="hd_recording" formControlName='hd_recording'>
+      <label class="form-check-label" for="hd_recording">
+        {{CONST.hd_recording}}
+      </label>
+    </div>
+
+  </div>
+
+
+  <div formGroupName="connectivity_feature">
+
+    <div class="form-group">
+      <label for="network_type">
+        {{CONST.network_type}}
+      </label>
+      <input id="network_type" type="text" class="form-control" formControlName='network_type'>
+    </div>
+
+    <div class="form-group">
+      <label for="supported_network">
+        {{CONST.supported_network}}
+      </label>
+      <input id="supported_network" type="text" class="form-control" formControlName='supported_network'>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="bluetooth" formControlName='bluetooth'>
+      <label class="form-check-label" for="bluetooth">
+        {{CONST.bluetooth}}
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="bluetooth_version">
+        {{CONST.bluetooth_version}}
+      </label>
+      <input id="bluetooth_version" type="text" class="form-control" formControlName='bluetooth_version'>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="wifi" formControlName='wifi'>
+      <label class="form-check-label" for="wifi">
+        {{CONST.wifi}}
+      </label>
+    </div>
+
+    <div class="form-group">
+      <label for="wifi_version">
+        {{CONST.wifi_version}}
+      </label>
+      <input id="wifi_version" type="text" class="form-control" formControlName='wifi_version'>
+    </div>
+
+    <div class="form-group">
+      <label for="usb_3_0_slots">
+        {{CONST.usb_3_0_slots}}
+      </label>
+      <input id="usb_3_0_slots" type="text" class="form-control" formControlName='usb_3_0_slots'>
+    </div>
+
+    <div class="form-group">
+      <label for="usb_2_0_slots">
+        {{CONST.usb_2_0_slots}}
+      </label>
+      <input id="usb_2_0_slots" type="text" class="form-control" formControlName='usb_2_0_slots'>
+    </div>
+
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="headphone_jack" formControlName='headphone_jack'>
+      <label class="form-check-label" for="headphone_jack">
+        {{CONST.headphone_jack}}
+      </label>
+    </div>
+
+  </div>
+
+
+  <div formGroupName="smart_tv_feature">
+
+    <div class="form-group">
+      <label for="supported_apps">
+        {{CONST.supported_apps}}
+      </label>
+      <input id="supported_apps" type="text" class="form-control" formControlName='supported_apps'>
+    </div>
+
+    <div class="form-group">
+      <label for="operating_system">
+        {{CONST.operating_system}}
+      </label>
+      <input id="operating_system" type="text" class="form-control" formControlName='operating_system'>
+    </div>
+
+    <div class="form-group">
+      <label for="screen_mirroring">
+        {{CONST.screen_mirroring}}
+      </label>
+      <input id="screen_mirroring" type="text" class="form-control" formControlName='screen_mirroring'>
+    </div>
+
+    <div class="form-group">
+      <label for="content_providers">
+        {{CONST.content_providers}}
+      </label>
+      <input id="content_providers" type="text" class="form-control" formControlName='content_providers'>
+    </div>
+
+    <div class="form-group">
+      <label for="supported_devices_for_casting">
+        {{CONST.supported_devices_for_casting}}
+      </label>
+      <input id="supported_devices_for_casting" type="text" class="form-control"
+        formControlName='supported_devices_for_casting'>
+    </div>
+
+  </div>
+
   <input type="submit">
 </form>
 <button class="btn btn-success" (click)='onClick()'>
-  Get data
+  Get dataRequired input!
 </button>

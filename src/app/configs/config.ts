@@ -16,7 +16,8 @@ export const config = {
 
 
 const server = 'http://sandip-shopping-app.herokuapp.com/api';
-export const productsUrlByCatId = `${server}/products/byCategoryId/`;
+export const productsUrl = `${server}/products`;
+export const productsUrlByCatId = `${productsUrl}/byCategoryId/`;
 export const categoriesUrl = `${server}/categories`;
 export const productServer = `${server}/categories/dashboard-products`;
 export const productByIdUrl = (id) => {
@@ -24,3 +25,6 @@ export const productByIdUrl = (id) => {
 };
 export const loginUrl = `${server}/auth/login`;
 export const cartUrl = `${server}/carts`;
+export const signupUrl = `${server}/auth/sign-up`;
+export const brandsUrl = `${server}/brands`;
+export const allProductsUrl = `${categoriesUrl}/dashboard-products`;

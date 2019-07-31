@@ -1,0 +1,48 @@
+<div class="container">
+  <div>
+    <div class="float-right">
+      <b class="btn-orange"  [routerLink]="['/manage', 'add']">
+          <a class=" d-inline-block py-2 px-3">
+              +
+           </a>
+      </b>
+      
+    </div>
+  </div>
+  <table
+  class="table table-striped table-hover"
+  *ngIf='products'>
+    
+      <tr *ngFor='let product of products; index as i'>
+        <td 
+         class="text-center"
+         colspan="4">
+          <h3>{{product.name}}</h3>
+          <table class="table table-hover table-striped">
+              <tr>
+                  <th>S.No.</th>
+                  <th>Name</th>
+                  <th>Brand</th>
+                  <th>Actions</th>
+                </tr>
+            <tr *ngFor='let item of product.brands; index as j'>
+              <td>
+                {{i+1}}.{{j+1}}
+              </td>
+              <td>
+                {{item.product.name | summary | titlecase}}
+              </td>
+              <td>
+                {{item.name}}
+              </td>
+              <td class="text-primary">
+                view / delete /update
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    
+  </table>
+</div>
+

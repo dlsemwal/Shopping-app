@@ -4,7 +4,7 @@
       <table class="table table-striped table-hover">
         <thead>
           <tr>
-            <th>Product Id</th>
+            <th>Sr.No.</th>
             <th>Product Name</th>
             <th>Product Quantity</th>
             <th>Product Price</th>
@@ -12,9 +12,9 @@
           </tr>
         </thead>
         <tbody *ngIf='cart'>
-          <tr *ngFor='let item of cart'>
+          <tr *ngFor='let item of cart; index as i'>
             <td>
-              {{item.product_id._id}}
+              {{i+1}}
             </td>
             <td>{{item.product_id.name}}</td>
             <td>

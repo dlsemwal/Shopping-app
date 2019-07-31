@@ -13,15 +13,7 @@ export class LayoutComponent implements OnInit {
   res;
   phoneImages;
   camImages;
-  constructor(common: CommonService, private http: HttpService) {
-    common.getShoppingProd().subscribe(x => {
-      this.res = x
-      this.camImages = this.res.camera;
-      this.camImages = this.camImages.slice(0, 4);
-      this.phoneImages = this.res.phone;
-      this.phoneImages = this.phoneImages.slice(0, 4);
-    });
-  }
+  constructor(common: CommonService, private http: HttpService) {}
 
   ngOnInit() {
     this.getProducts();
@@ -32,12 +24,18 @@ export class LayoutComponent implements OnInit {
       this.categories.map(ele => {
         this.http.getProductsByCat(ele._id, 4).subscribe(res => {
           ele.data = res['data'];
-        });
-      })
-    })
+        },
+          err => console.log('err2', err)
+
+        );
+      });
+    },
+      err => console.log('err3', err)
+
+    );
   }
 
 
-  
+
 
 }

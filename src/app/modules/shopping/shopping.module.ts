@@ -6,10 +6,9 @@ import { ShoppingRoutingModule } from './shopping-routing.module';
 import { ShoppingComponent } from './shopping.component';
 import { LayoutComponent } from './layout/layout.component';
 import { CarouselComponent } from './layout/carousel/carousel.component';
-import { CartComponent } from './cart/cart.component';
 import { SharedModule } from '../../shared/shared.module';
 @NgModule({
-  declarations: [ShoppingComponent, LayoutComponent, CarouselComponent, CartComponent],
+  declarations: [ShoppingComponent, LayoutComponent, CarouselComponent],
   imports: [
     CommonModule,
     NgbModule,

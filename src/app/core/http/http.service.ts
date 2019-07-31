@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { categoriesUrl, productsUrlByCatId, productByIdUrl, cartUrl, brandsUrl, productsUrl } from '../../configs/config';
+import { categoriesUrl, productsUrlByCatId, productByIdUrl, cartUrl, brandsUrl, productsUrl, allProductsUrl } from '../../configs/config';
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +38,9 @@ export class HttpService {
   }
   addProduct(data) {
     return this.http.post(productsUrl, data);
+  }
+  getProducts() {
+    return  this.http.get(allProductsUrl);
   }
 
 }

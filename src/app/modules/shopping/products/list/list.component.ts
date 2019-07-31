@@ -50,16 +50,19 @@ export class ListComponent implements OnInit {
 
   updateQuantity(item, isAddition) {
     if (isAddition) {
-      this.http.updateQuantity(item._id, item.quantity + 1);
+      this.http.updateQuantity(item._id, item.quantity + 1)
+        .subscribe(res => console.log(res));
       this.products[this.products.indexOf(item)].quantity = item.quantity + 1;
     } else {
-      this.http.updateQuantity(item._id, item.quantity - 1);
+      this.http.updateQuantity(item._id, item.quantity - 1)
+        .subscribe(res => console.log(res));
       this.products[this.products.indexOf(item)].quantity = item.quantity - 1;
     }
 
   }
-  addCart(item) {
-
+  addToCart(item) {
+    this.http.addToCart(item._id).subscribe(res => console.log(res));
+    this.products[this.products.indexOf(item)].quantity = 1;
   }
 
 
