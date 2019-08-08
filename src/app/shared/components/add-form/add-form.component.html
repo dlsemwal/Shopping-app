@@ -1,3 +1,8 @@
+<button class="btn btn-success" (click)='onClick()'>
+  Get data
+</button>
+
+
 <form #addForm='ngForm' [formGroup]='form' (ngSubmit)='onSubmit()'>
 
   <div class="row">
@@ -6,7 +11,7 @@
       <label for="name">
         {{CONST.name}}
       </label>
-      <input name="name" type="text" id="name" class="form-control" formControlName='name' />
+      <input name="name" type="text" id="name" class="form-control" formControlName='name' [value]='product?.name' />
       <div class="text-success" *ngIf='name.touched && name.valid'>
         {{CONST.valid}}
       </div>
@@ -18,7 +23,8 @@
       <label for="price">
         {{CONST.price}}
       </label>
-      <input name="price" type="number" id="price" class="form-control" placeholder="&#8377;" formControlName='price' />
+      <input name="price" type="number" id="price" class="form-control" placeholder="&#8377;" formControlName='price'
+        [value]='product?.price' />
       <div class="text-success" *ngIf='price.touched && price.valid'>
         {{CONST.valid}}
       </div>
@@ -36,8 +42,8 @@
       <label for="category_id">
         {{CONST.category_id}}
       </label>
-      <select name="category_id" id="category_id" class="form-control" formControlName='category_id'>
-        <option selected disabled>
+      <select  [value]='product?.category_id'  name="category_id" id="category_id" class="form-control" formControlName='category_id'>
+        <option [selected]='!product' disabled>
           Select Category
         </option>
         <option *ngFor='let item of categories' [value]='item._id'>
@@ -52,12 +58,12 @@
       </div>
     </div>
 
-    <div class="form-group col" *ngIf='brandList?.length > 0'>
+    <div class="form-group col" *ngIf='brandList?.length > 0 || product'>
       <label for="brand">
         {{CONST.brand}}
       </label>
-      <select name="brand" id="brand" class="form-control" formControlName='brand'>
-        <option disabled>
+      <select name="brand" [value]='product?.brand._id' id="brand" class="form-control" formControlName='brand'>
+        <option disabled [selected]='!product'>
           Select Brand
         </option>
         <option *ngFor='let item of brandList' [value]='item._id'>
@@ -75,7 +81,7 @@
       <label for="discount">
         {{CONST.discount}}
       </label>
-      <input name="discount" type="number" id="discount" class="form-control" placeholder="%"
+      <input name="discount"  [value]='product?.discount'  type="number" id="discount" class="form-control" placeholder="%"
         formControlName='discount' />
       <div class="text-success" *ngIf='discount.touched && discount.valid'>
         {{CONST.valid}}
@@ -109,7 +115,7 @@
       <label for="warranty">
         {{CONST.warranty}}
       </label>
-      <input id="warranty" type="text" class="form-control" formControlName='warranty'>
+      <input  [value]='product?.warranty' id="warranty" type="text" class="form-control" formControlName='warranty'>
     </div>
   </div>
 
@@ -438,8 +444,5 @@
 
   </div>
 
-  <input type="submit">
+  <input class="btn btn-orange" type="submit">
 </form>
-<button class="btn btn-success" (click)='onClick()'>
-  Get dataRequired input!
-</button>

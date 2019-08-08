@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { HttpService } from 'src/app/core/http/http.service';
-import { CONST } from 'src/app/core/const/const.service';
+import { ConstService } from 'src/app/core/const/const.service';
 
 @Component({
   selector: 'app-add-form',
@@ -9,6 +9,7 @@ import { CONST } from 'src/app/core/const/const.service';
   styleUrls: ['./add-form.component.css']
 })
 export class AddFormComponent implements OnInit {
+  @Input() product;
   categories;
   brands: object[];
   form = new FormGroup({
@@ -103,7 +104,7 @@ export class AddFormComponent implements OnInit {
   constructor(
     private http: HttpService,
     // tslint:disable-next-line:no-shadowed-variable
-    private CONST: CONST
+    private CONST: ConstService
   ) { }
 
 
@@ -116,6 +117,7 @@ export class AddFormComponent implements OnInit {
     this.http.getBrands()
       .subscribe((res: any) => this.brands = res.data);
   }
+
   addImage(img: HTMLInputElement) {
     this.images.push(new FormControl(img.value));
     img.value = '';
@@ -125,16 +127,28 @@ export class AddFormComponent implements OnInit {
     this.images.removeAt(index);
   }
   onClick() {
-    console.log(this.images.value);
+    console.log(this.product);
 
   }
   onSubmit() {
     console.log('submit is working', this.form.value);
-    this.http.addProduct(this.form.value).subscribe(
-      res => console.log(res),
-      err => console.log(err)
+    if (this.product) {
+      console.log('add product is running');
 
-    );
+      this.http.updateProduct(this.product._id, this.form.value)
+        .subscribe(
+          res => console.log(res)
+        );
+    } else {
+      console.log('update product is running');
+
+      this.http.addProduct(this.form.value)
+        .subscribe(
+          res => console.log(res),
+          err => console.log(err)
+
+        );
+    }
 
   }
 

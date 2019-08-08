@@ -1,10 +1,13 @@
 <div ngbDropdown class="d-inline-block">
   <a id="dropdownBasic1" ngbDropdownToggle>
-    {{localService?.getUser}}
+    {{localService?.userName}}
   </a>
   <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="bg-orange">
     <button ngbDropdownItem [routerLink]="['/cart']">
       Cart
+    </button>
+    <button ngbDropdownItem [routerLink]="['/manage']">
+      Manage Products
     </button>
     <button ngbDropdownItem (click)='auth.logout()'>
       Logout
