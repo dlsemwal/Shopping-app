@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class CONST {
+export class ConstService {
   valid = 'Looks good!';
   invalidRequired = 'Required input!';
   submitBtn = 'Add Product:';
@@ -53,6 +53,16 @@ export class CONST {
   screen_mirroring = 'Screen mirroring:';
   content_providers = 'Content Providers:';
   supported_devices_for_casting = 'Supported devices for casting:';
+  delete = 'Delete';
+  update = 'Update';
+  srNumb = 'Sr. Number';
+  productName = 'Product Name';
+  productQuantity = 'Product Quantity';
+  productCost = 'Product Price';
+  actions = 'Actions';
+  amount = 'Amount';
+  categories = 'Categories';
+  view = 'View'
 
 
 

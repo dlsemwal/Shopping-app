@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { LStorageService } from '../services/l-storage.service';
 import { loginUrl } from 'src/app/configs/config';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,23 +11,43 @@ import { loginUrl } from 'src/app/configs/config';
 export class HttpReqIntercepter implements HttpInterceptor {
 
   constructor(private lStorage: LStorageService) { }
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
 
-    if (
-      // !req.url.includes(config.loginUrl)
-      // tslint:disable-next-line:triple-equals
-      req.url == loginUrl
-    ) {
-      return next.handle(req);
+    if (this.lStorage.getToken) {
+      req = req.clone(
+        {
+          setHeaders: {
+            Authorization: 'this.lStorage.getToken'
+          }
+        });
     }
-    const modified = req.clone(
-      {
-        setHeaders: {
-          'Authorization': this.lStorage.getToken()
-        }
-      });
 
-    return next.handle(modified);
+
+    return next.handle(req).pipe(
+      map(
+        (ev: HttpEvent<any>) => {
+          if (ev instanceof HttpResponse) {
+            console.log(ev);
+
+            return ev;
+          }
+        }
+      ),
+      catchError(
+        (err: HttpErrorResponse) => {
+
+          let data = {
+            reason: err.statusText,
+            status: err.status
+          }
+
+          return throwError(err)
+        }
+      )
+    )
 
 
   }
