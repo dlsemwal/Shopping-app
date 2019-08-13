@@ -18,7 +18,7 @@ export class LStorageService {
 
   setUser(user) {
     console.log(user);
-    
+
     localStorage.setItem('user', JSON.stringify(user));
   }
   get user() {
@@ -39,5 +39,8 @@ export class LStorageService {
     else return null
     // let cart =
     // return JSON.parse(localStorage.getItem('user')).cart_id;
+  }
+  get userName() {
+    return this.user.first_name + ' ' + this.user.last_name
   }
 }

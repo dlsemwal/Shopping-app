@@ -7,8 +7,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
-import { CommonService } from './core/services/common.service';
-import { CartService } from './core/services/cart.service';
 import { HttpReqIntercepter } from './core/interceptors/http-req.service';
 import { AuthService } from './core/authentication/auth.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -32,8 +30,6 @@ import { SharedModule } from './shared/shared.module';
     AuthService, [
       { provide: HTTP_INTERCEPTORS, useClass: HttpReqIntercepter, multi: true }
     ],
-    CartService,
-    CommonService
 
   ],
   bootstrap: [AppComponent]

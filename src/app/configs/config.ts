@@ -28,3 +28,6 @@ export const cartUrl = `${server}/carts`;
 export const signupUrl = `${server}/auth/sign-up`;
 export const brandsUrl = `${server}/brands`;
 export const allProductsUrl = `${categoriesUrl}/dashboard-products`;
+export const brandsByCatUrl = (id) => {
+    return `${server}/categories/${id}/brand-count`
+}

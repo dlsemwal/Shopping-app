@@ -14,11 +14,18 @@ export class ListComponent implements OnInit {
   products: any[];
   cartItems;
 
-  constructor(private route: ActivatedRoute, private http: HttpService) {
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpService
+  ) {
 
   }
 
   ngOnInit() {
+    this.categoryId = this.route.snapshot.paramMap.get('categoryId');
+    this.category = this.route.snapshot.paramMap.get('categoryName')
+
+    
     this.getProducts();
   }
   getProducts() {

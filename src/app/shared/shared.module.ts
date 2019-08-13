@@ -7,9 +7,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { RouterModule } from '@angular/router';
 import { AddFormComponent } from './components/add-form/add-form.component';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
-  declarations: [SummaryPipe, LoginComponent, DropdownComponent, AddFormComponent],
+  declarations: [
+    SummaryPipe,
+    LoginComponent,
+    DropdownComponent,
+    AddFormComponent,
+    ProductComponent
+  ],
   imports: [
     CommonModule,
     NgbModule,
@@ -23,7 +30,9 @@ import { AddFormComponent } from './components/add-form/add-form.component';
     SummaryPipe,
     LoginComponent,
     DropdownComponent,
-    AddFormComponent
+    AddFormComponent,
+    ProductComponent
+
   ]
 })
 export class SharedModule { }

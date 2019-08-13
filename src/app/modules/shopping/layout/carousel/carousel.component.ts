@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonService } from '../../../../core/services/common.service';
 
 @Component({
   selector: 'app-shopping-carousel',
@@ -15,7 +14,7 @@ export class CarouselComponent implements OnInit {
     `https://cdn.shopify.com/s/files/1/1055/8136/files/HP1.1_LipProductsSale-1920x600_37e1dbb0-67db-4146-9496-5bff9273eade_1920x.jpg`,
     `https://thumbs.dreamstime.com/z/winter-sale-banner-template-snow-flakes-ice-shopping-end-vector-illustration-133543244.jpg`
   ];
-  constructor(common: CommonService) {}
+  constructor() {}
   ngOnInit() {
   }
 

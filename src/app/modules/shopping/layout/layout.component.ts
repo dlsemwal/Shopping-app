@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../core/http/http.service';
-import { CommonService } from '../../../core/services/common.service';
 
 @Component({
   selector: 'app-layout',
@@ -13,7 +12,7 @@ export class LayoutComponent implements OnInit {
   res;
   phoneImages;
   camImages;
-  constructor(common: CommonService, private http: HttpService) {}
+  constructor(private http: HttpService) {}
 
   ngOnInit() {
     this.getProducts();

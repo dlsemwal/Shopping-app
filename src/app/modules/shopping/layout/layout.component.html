@@ -11,7 +11,8 @@
           <h3 class="float-left">
             {{item.name}}
           </h3>
-          <button type="button" class="btn btn-success float-right" [routerLink]="['/products', item.name, item._id]">
+          <button type="button" class="btn btn-orange rounded-0 float-right"
+            [routerLink]="['/products', item.name, item._id]">
             View All
           </button>
         </div>
@@ -19,20 +20,7 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-3 py-3" *ngFor='let prod of item.data'>
-              <a [routerLink]="['/products', item.name, item._id, 'details', prod._id]">
-                <img [src]="prod.images[0]" alt="Mobile Phone" width="400" height="300">
-              </a>
-              <div class=" text-center py-2">
-                <h5>{{prod.name | summary : 20}}</h5>
-              </div>
-              <div class=" text-center">
-                <p class="text-secondary">{{'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam, minus
-                  nam recusandae voluptatum' | summary:75}}</p>
-                <p class="text-primary">
-                  <del class="text-secondary">{{prod.price | currency : 'INR'}} </del>
-                  <span class="text-primary mx-2"> {{(prod.price * (1 -prod.discount / 100)) | currency : 'INR'}}</span>
-                </p>
-              </div>
+              <product [product]='prod'></product>
             </div>
           </div>
         </div>

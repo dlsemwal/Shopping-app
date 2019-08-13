@@ -73,9 +73,6 @@ export class HttpService {
   updateProduct(id: string, data) {
     return this.http.put(`${server.productsUrl}/${id}/details`, data);
   }
-  getProductsByBrand(id: string) {
-    return this.http.get(server.productsByBrandUrl(id))
-  }
 
   getAllProducts(
     id: string,
