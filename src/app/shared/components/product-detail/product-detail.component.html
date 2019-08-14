@@ -1,0 +1,30 @@
+<div class="container py-5" *ngIf='product'>
+  <div class="row">
+    <div class="col-sm-5">
+      <img [src]="image" alt="{{product.name}}">
+      <div>
+        <img class="float-left mx-2" width="100" height="100" *ngFor='let img of product.images' [src]="img" (click)='imgChange(img)'>
+      </div>
+    </div>
+    <div class="col-sm-7 card">
+      <div class="">
+        <div class="card-header text-center">
+          <h3>{{product.name}}</h3>
+        </div>
+        <div class="card-body text-center">
+          <p *ngFor='let desc of product.highlight'> {{desc}}
+          </p>
+          <h4>
+            <del class="text-secondary">
+              {{product.price | currency : 'INR'}}
+            </del>
+            <span class="text-primary mx-2">
+              {{product.price * (1 - product.discount / 100) | currency : 'INR'}}
+            </span>
+          </h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <button class="btn btn-danger" (click)='onClick()'>get data</button> -->
