@@ -15,7 +15,7 @@ export const config = {
 };
 
 
-const server = 'http://sandip-shopping-app.herokuapp.com/api';
+const server = 'http://enigmatic-reef-16960.herokuapp.com/api';
 export const productsUrl = `${server}/products`;
 export const productsUrlByCatId = `${productsUrl}/byCategoryId/`;
 export const categoriesUrl = `${server}/categories`;

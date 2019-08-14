@@ -8,6 +8,7 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { RouterModule } from '@angular/router';
 import { AddFormComponent } from './components/add-form/add-form.component';
 import { ProductComponent } from './components/product/product.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ProductComponent } from './components/product/product.component';
     LoginComponent,
     DropdownComponent,
     AddFormComponent,
-    ProductComponent
+    ProductComponent,
+    ProductDetailComponent
   ],
   imports: [
     CommonModule,

@@ -1,24 +1,26 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div class="container-fluid header py-3">
-  <div class="row">
-    <div class="col-1">
+<div class="fh">
+  <!--The content below is only a placeholder and can be replaced.-->
+  <div class="container-fluid header py-3">
+    <div class="row">
+      <div class="col-1">
+
+      </div>
+      <header class="py-3" class="col-10">
+        <h1 class="float-left" [routerLink]="['']">Welcome to NeoSoft</h1>
+        <div class="float-right mr-3">
+
+          <app-dropdown *ngIf="lStorage.getUser"></app-dropdown>
+          <app-login *ngIf="!lStorage.getUser"></app-login>
+          <a>
+            <i class="material-icons mx-2" [routerLink]="['/cart']">
+              shopping_cart
+            </i>
+          </a>
+        </div>
+      </header>
 
     </div>
-    <header class="py-3" class="col-10">
-      <h1 class="float-left" [routerLink]="['']">Welcome to NeoSoft</h1>
-      <div class="float-right mr-3">
-
-        <app-dropdown *ngIf="lStorage.getUser"></app-dropdown>
-        <app-login *ngIf="!lStorage.getUser"></app-login>
-        <a>
-          <i class="material-icons mx-2" [routerLink]="['/cart']">
-            shopping_cart
-          </i>
-        </a>
-      </div>
-    </header>
-
   </div>
-</div>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>

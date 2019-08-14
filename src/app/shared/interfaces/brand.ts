@@ -1,8 +1,7 @@
-export interface Brand {
-    _id: string
-    category_id: string[],
+export interface BrandCount {
+    _id: string;
     name: string;
-    image: string,
-    description: string
+    product_count: number
 
 }
+ 

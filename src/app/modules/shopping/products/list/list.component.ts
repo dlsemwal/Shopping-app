@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { log } from 'util';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpService } from '../../../../core/http/http.service';
+import { ServerResponse } from 'src/app/shared/interfaces/server-response';
+import { BrandCount } from 'src/app/shared/interfaces/brand';
+import { ConstService } from 'src/app/core/const/const.service';
 
 @Component({
   selector: 'app-list',
@@ -13,69 +15,108 @@ export class ListComponent implements OnInit {
   categoryId;
   products: any[];
   cartItems;
+  categories;
+  page: number;
+  limit: number = 10;
+  brand: string;
+  brands: BrandCount[];
 
   constructor(
     private route: ActivatedRoute,
-    private http: HttpService
+    private http: HttpService,
+    private router: Router,
+    private CONST: ConstService
   ) {
 
   }
 
+  getCat() {
+    this.http.getCategories().subscribe(
+      (res: ServerResponse) => {
+        this.categories = res.data;
+        console.log(this.categories);
+
+      }
+    )
+  }
+  getBrands(id) {
+    this.http.getBrandsByCat(id)
+      .subscribe(
+        (res: ServerResponse) => {
+          this.brands = res.data
+        }
+      )
+  }
+  getProducts(id, pg, lim, br) {
+    this.http.getAllProducts(id, pg, lim, br)
+      .subscribe(
+        (res: ServerResponse) => {
+          this.products = res.data
+        }
+      )
+  }
+
   ngOnInit() {
-    this.categoryId = this.route.snapshot.paramMap.get('categoryId');
-    this.category = this.route.snapshot.paramMap.get('categoryName')
+    this.route.paramMap.subscribe(
+      params => {
+        this.category = params.get('categoryName');
+        this.categoryId = params.get('categoryId');
+        this.page = 1;
+        this.brand = null;
+        this.getProducts(
+          this.categoryId,
+          this.page,
+          this.limit,
+          this.brand
+        );
+        this.getBrands(this.categoryId);
+      }
+    )
 
-    
-    this.getProducts();
-  }
-  getProducts() {
-    this.route.params.subscribe(params => {
-      this.category = params.categoryName;
-      this.categoryId = params.categoryId;
-      this.http.getCart().subscribe((cart: any) => {
-        this.cartItems = cart.data.map((value: any) => {
-          return { id: value.product_id._id, quantity: value.quantity };
-        }, err => console.log('login required to fetch cart', err));
-        this.http.getProductsByCat(params.categoryId)
-          .subscribe((res: any) => {
-            this.products = res.data;
-            console.log(this.products);
-            this.products.forEach(value => {
-
-              if (this.cartItems) {
-                // tslint:disable-next-line:triple-equals
-                const filteredObj = this.cartItems.find(item => item.id == value._id);
-                if (filteredObj) {
-                  value.quantity = filteredObj.quantity;
-                }
-              }
-            });
-          });
-      });
-    });
-  }
-
-  updateQuantity(item, isAddition) {
-    if (isAddition) {
-      this.http.updateQuantity(item._id, item.quantity + 1)
-        .subscribe(res => console.log(res));
-      this.products[this.products.indexOf(item)].quantity = item.quantity + 1;
-    } else {
-      this.http.updateQuantity(item._id, item.quantity - 1)
-        .subscribe(res => console.log(res));
-      this.products[this.products.indexOf(item)].quantity = item.quantity - 1;
-    }
+    this.getCat()
 
   }
-  addToCart(item) {
-    this.http.addToCart(item._id).subscribe(res => console.log(res));
-    this.products[this.products.indexOf(item)].quantity = 1;
+
+  changeCat(item) {
+    this.router.navigate(['/products', item.name, item._id])
   }
 
+  changeBrand(id) {
+    this.brand = id;
+    this.page = 1;
+    this.getProducts(
+      this.categoryId,
+      this.page,
+      this.limit,
+      this.brand
+    )
 
-  // onClick() {
-  //   console.log(this.cartItems);
+  }
+  getAllProducts() {
+    this.brand = null;
+    this.page = 1;
+    this.getProducts(
+      this.categoryId,
+      this.page,
+      this.limit,
+      this.brand
+    )
+  }
+  
+  onScroll() {
+    this.page += 1;
+    this.http.getAllProducts(
+      this.categoryId,
+      this.page,
+      this.limit,
+      this.brand
+    ).subscribe(
+      (res: ServerResponse) => {
+        this.products = this.products.concat(res.data)
+        console.log(this.products);
 
-  // }
+      }
+    )
+  }
 
 }

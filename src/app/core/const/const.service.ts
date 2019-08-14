@@ -62,7 +62,8 @@ export class ConstService {
   actions = 'Actions';
   amount = 'Amount';
   categories = 'Categories';
-  view = 'View'
+  view = 'View';
+  brands = 'Brands'
 
 
 

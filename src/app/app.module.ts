@@ -24,7 +24,7 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     HttpClientModule,
     NgbModule,
-    SharedModule
+    SharedModule,
   ],
   providers: [
     AuthService, [

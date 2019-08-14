@@ -5,13 +5,15 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { ListComponent } from './list/list.component';
 import { SharedModule } from '../../../shared/shared.module';
 import { DetailsComponent } from './details/details.component';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 @NgModule({
   declarations: [ListComponent, DetailsComponent],
   imports: [
     CommonModule,
     ProductsRoutingModule,
-    SharedModule
+    SharedModule,
+    InfiniteScrollModule
   ]
 })
 export class ProductsModule { }

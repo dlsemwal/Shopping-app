@@ -1,53 +1,48 @@
 <div class="container">
   <div class="row">
     <div class="col-12 py-4">
-      <h2>{{category}}</h2>
+      <a (click)='getAllProducts()'>
+        <h2>{{category}}</h2>
+      </a>
+
 
     </div>
   </div>
-  <div class="row" *ngIf='products'>
-    <div class="col-sm-3 py-2 px-2 item" *ngFor='let item of products'>
-      <a [routerLink]="['/products', category, categoryId, 'details', item._id]">
-        <img [src]="item.images[0]" [alt]="item.name" width="400" height="300">
-      </a>
-      <div class="desc py-2">
-        <h5>{{item.name | summary : 40}}</h5>
-        <p class="text-secondary">{{'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odit, repellat,
-          perspiciatis assumenda ipsum debitis ab blanditiis in minus, nisi pariatur aspernatur a ea vero harum quod
-          iste et! Vel, sunt!' | summary : 100}}</p>
-        <p class="text-primary">
-          <del class="text-secondary">
-            {{item.price | currency : 'INR'}}
-          </del>
-          <span class="text-primary mx-2">
-            {{item.price * (1 - item.discount / 100) | currency : 'INR'}}
-          </span>
+  <div class="row">
+    <div class="col-2">
+      <div class="py-3">
+        <h5>
+          {{CONST?.categories}}
+        </h5>
+        <ul class="nav flex-column">
+          <li class="nav-item" *ngFor='let item of categories'>
+            <a class="nav-link" [ngClass]="{'active' : item._id == categoryId}" (click)='changeCat(item)'>
+              {{item.name}}
+            </a>
+          </li>
+        </ul>
+      </div>
 
-        </p>
-
-        <div class="text-center">
-          <div *ngIf='item.quantity; then quantityControl else addCart'></div>
-          <ng-template #quantityControl>
-            <button class="btn btn-primary" (click)='updateQuantity(item, false)' [disabled]='item.quantity < 1'>
-              -
-            </button>
-            <input type="number" class="text-center border-0" [value]='item.quantity' min="0" max="999" readonly>
-
-            <button class="btn btn-primary" (click)='updateQuantity(item, true)'>
-              +
-            </button>
-          </ng-template>
-          <ng-template #addCart>
-            <button class="btn btn-primary" (click)='addToCart(item)'>
-              Add to cart
-            </button>
-          </ng-template>
+      <div class="py-3">
+        <h5>
+          {{CONST?.brands}}
+        </h5>
+        <ul class="nav flex-column">
+          <li class="nav-item" *ngFor='let item of brands'>
+            <a class="nav-link" [ngClass]="{'active' : item._id == brand}" (click)='changeBrand(item._id)'>
+              {{item.name}}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-10" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()">
+      <div class="row" *ngIf='products'>
+        <div class="col-sm-3 py-2 px-2 item" *ngFor='let item of products'>
+          <product [product]='item'></product>
         </div>
-
-
       </div>
     </div>
   </div>
 </div>
-
-<!-- <button class="btn btn-danger" (click)='onClick()'>get Data</button> -->

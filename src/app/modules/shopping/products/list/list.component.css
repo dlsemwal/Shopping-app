@@ -4,5 +4,5 @@ img {
     max-height: 120px;
 }
 .item:hover {
-    border: 1px solid skyblue;
+    box-shadow: 1px 1px 5px rgb(151, 149, 149)
 }
