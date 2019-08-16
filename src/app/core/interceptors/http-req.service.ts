@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { LStorageService } from '../services/l-storage.service';
-import { loginUrl } from 'src/app/configs/config';
 import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
@@ -20,7 +19,7 @@ export class HttpReqIntercepter implements HttpInterceptor {
       req = req.clone(
         {
           setHeaders: {
-            Authorization: 'this.lStorage.getToken'
+            Authorization: this.lStorage.getToken
           }
         });
     }

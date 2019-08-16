@@ -1,19 +1,22 @@
 <div class="container py-5" *ngIf='product'>
+  <button class="btn btn-danger" (click)='onClick()'>get data</button>
   <div class="row">
-    <div class="col-sm-5">
-      <img [src]="image" alt="{{product.name}}">
+    <div class="col-sm-7">
+      <img [src]="image" class="main" alt="{{product.name}}">
       <div>
-        <img class="float-left mx-2" width="100" height="100" *ngFor='let img of product.images' [src]="img" (click)='imgChange(img)'>
+        <img class="float-left mx-2" width="100" height="100" *ngFor='let img of product.images' [src]="img"
+          (click)='imgChange(img)'>
       </div>
     </div>
-    <div class="col-sm-7 card">
+    <div class="col-sm-5 card">
       <div class="">
         <div class="card-header text-center">
           <h3>{{product.name}}</h3>
         </div>
         <div class="card-body text-center">
-          <p *ngFor='let desc of product.highlight'> {{desc}}
-          </p>
+          <div class="text-secondary" *ngFor='let desc of product.highlight'>
+            {{desc}}
+          </div>
           <h4>
             <del class="text-secondary">
               {{product.price | currency : 'INR'}}
@@ -27,4 +30,3 @@
     </div>
   </div>
 </div>
-<!-- <button class="btn btn-danger" (click)='onClick()'>get data</button> -->
