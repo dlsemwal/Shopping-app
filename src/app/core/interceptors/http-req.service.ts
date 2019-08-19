@@ -42,6 +42,8 @@ export class HttpReqIntercepter implements HttpInterceptor {
             reason: err.statusText,
             status: err.status
           }
+          console.log(err);
+
 
           return throwError(err)
         }

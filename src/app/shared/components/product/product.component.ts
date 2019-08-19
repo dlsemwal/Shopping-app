@@ -9,7 +9,14 @@ import { ServerResponse } from '../../interfaces/server-response';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  @Input('product') product: Product;
+  @Input('product') data: any;
+  get product() {
+    if (!this.data.info) return this.data
+    if (this.data.info.isInCart) {
+      this.data.data.quantity = this.data.info.quantity
+    }
+    return this.data.data
+  }
 
   constructor(
     private http: HttpService

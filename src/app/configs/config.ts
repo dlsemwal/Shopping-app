@@ -31,3 +31,7 @@ export const allProductsUrl = `${categoriesUrl}/dashboard-products`;
 export const brandsByCatUrl = (id) => {
     return `${server}/categories/${id}/brand-count`
 }
+
+export const orderUrl = `${server}/order`;
+export const placeOrderUrl = `${orderUrl}/placeOrder`;
+export const myOrdersUrl = `${orderUrl}/placeOrder`;

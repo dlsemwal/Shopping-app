@@ -9,7 +9,7 @@ import { ConstService } from 'src/app/core/const/const.service';
   styleUrls: ['./add-form.component.css']
 })
 export class AddFormComponent implements OnInit {
-  @Input() product;
+  @Input('product') product;
   categories;
   brands: object[];
   form = new FormGroup({

@@ -1,48 +1,65 @@
 <div class="container">
-  <div>
-    <div class="float-right">
-      <b class="btn-orange"  [routerLink]="['/manage', 'add']">
-          <a class=" d-inline-block py-2 px-3">
-              +
-           </a>
-      </b>
-      
+  <div class="row">
+    <div class="col-2">
+      <div class="py-3">
+        <h5>
+          {{CONST?.categories}}
+        </h5>
+        <ul class="nav flex-column">
+          <li class="nav-item" *ngFor='let item of categories'>
+            <a class="nav-link" [ngClass]="{'active' : item._id == categoryId}" (click)='changeCat(item)'>
+              {{item.name}}
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+    <div class="col-10" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50"
+      (scrolled)="onScroll()">
+      <div class="container">
+        <div>
+          <div class="float-right">
+            <b class="btn-orange" [routerLink]="['/manage', 'add']">
+              <a class=" d-inline-block py-2 px-3">
+                +
+              </a>
+            </b>
+
+          </div>
+        </div>
+        <table class="table table-striped table-hover" *ngIf='products'>
+          <tr>
+            <th>S.No.</th>
+            <th>Name</th>
+            <th>Brand</th>
+            <th>Actions</th>
+          </tr>
+
+          <tr *ngFor='let item of products; index as i'>
+            <td>
+              {{i+1}}
+            <td>
+              {{item.data.name | summary | titlecase}}
+            </td>
+            <td>
+              {{item.data.brand.name}}
+            </td>
+            <td>
+              <button class="btn btn-sm btn-orange" [routerLink]="['/product', item.data._id]">
+                {{CONST.view}}
+              </button>
+              <button class="mx-2 btn btn-sm btn-orange" (click)='delete(item.data._id)'>
+                {{CONST.delete}}
+              </button>
+              <button class="btn btn-sm btn-orange" [routerLink]="['/manage', 'update', item.data._id]">
+                {{CONST.update}}
+              </button>
+            </td>
+          </tr>
+
+        </table>
+      </div>
     </div>
   </div>
-  <table
-  class="table table-striped table-hover"
-  *ngIf='products'>
-    
-      <tr *ngFor='let product of products; index as i'>
-        <td 
-         class="text-center"
-         colspan="4">
-          <h3>{{product.name}}</h3>
-          <table class="table table-hover table-striped">
-              <tr>
-                  <th>S.No.</th>
-                  <th>Name</th>
-                  <th>Brand</th>
-                  <th>Actions</th>
-                </tr>
-            <tr *ngFor='let item of product.brands; index as j'>
-              <td>
-                {{i+1}}.{{j+1}}
-              </td>
-              <td>
-                {{item.product.name | summary | titlecase}}
-              </td>
-              <td>
-                {{item.name}}
-              </td>
-              <td class="text-primary">
-                view / delete /update
-              </td>
-            </tr>
-          </table>
-        </td>
-      </tr>
-    
-  </table>
 </div>
-

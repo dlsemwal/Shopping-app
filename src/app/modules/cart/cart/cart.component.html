@@ -4,11 +4,24 @@
       <table class="table table-striped table-hover">
         <thead>
           <tr>
-            <th>Sr.No.</th>
-            <th>Product Name</th>
-            <th>Product Quantity</th>
-            <th>Product Price</th>
-            <th>Amount</th>
+            <th>
+              {{CONST.srNumb}}
+            </th>
+            <th>
+              {{CONST.productName}}
+            </th>
+            <th>
+              {{CONST.productQuantity}}
+            </th>
+            <th>
+              {{CONST.actions}}
+            </th>
+            <th>
+              {{CONST.productCost}}
+            </th>
+            <th>
+              {{CONST.amount}}
+            </th>
           </tr>
         </thead>
         <tbody *ngIf='cart'>
@@ -16,17 +29,20 @@
             <td>
               {{i+1}}
             </td>
-            <td>{{item.product_id.name}}</td>
+            <td>{{item.product_id.name | summary : 40}}</td>
             <td>
               {{item.quantity}}
-              <div class="float-right">
-                <button class="btn btn-sm pt-0" (click)='updateQuantity(item, true)'>
-                  +
-                </button><br>
-                <button class="btn btn-sm pb-0" (click)='updateQuantity(item, false)'>
-                  -
-                </button>
-              </div>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-orange" (click)='updateQuantity(item, true)'>
+                &#x2795;
+              </button>
+              <button class="btn btn-sm btn-orange mx-2" (click)='updateQuantity(item, false)'>
+                &#x2796;
+              </button>
+              <button class="btn btn-sm btn-orange" (click)='delete(item)'>
+                &#x2716;
+              </button>
             </td>
             <td>
               <div *ngIf='item.product_id.discount > 0; then offerPrice else price'>
@@ -62,7 +78,9 @@
           </tr>
         </tfoot>
       </table>
-      <button class="btn btn-success float-right">Buy Products</button>
+      <button class="btn btn-success float-right" (click)='placeOrder()'>
+          {{CONST.placeOrder}}
+      </button>
     </div>
   </div>
 </div>

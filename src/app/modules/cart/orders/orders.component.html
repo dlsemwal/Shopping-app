@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h2>
+        {{CONST.myOrders}}
+      </h2>
+    </div>
+    <div class="card-body">
+      <div *ngIf='orders; then orders else notFound'></div>
+      <ng-template #notFound>
+        <h4>
+          No Order Yet
+        </h4>
+      </ng-template>
+      <ng-template #orders>
+        Orders
+      </ng-template>
+      <div *ngIf='orders'>
+        My Orders
+      </div>
+    </div>
+    <div class="card-footer">
+
+    </div>
+  </div>
+</div>

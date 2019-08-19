@@ -36,6 +36,9 @@ export class HttpService {
   getCart() {
     return this.http.get(server.cartUrl);
   }
+  deleteCart(id: string) {
+    return
+  }
   updateQuantity(id: string, x: number) {
     const payload: Cart = {
       product_id: id,
@@ -86,5 +89,12 @@ export class HttpService {
     if (brand) params = params.append('brand', brand);
 
     return this.http.get(`${server.productsUrlByCatId}${id}`, { params: params });
+  }
+
+  placeOrder() {
+    return this.http.get(server.placeOrderUrl)
+  }
+  myOrders() {
+    return this.http.get(server.myOrdersUrl)
   }
 }

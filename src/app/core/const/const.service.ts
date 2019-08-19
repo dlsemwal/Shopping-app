@@ -57,13 +57,16 @@ export class ConstService {
   update = 'Update';
   srNumb = 'Sr. Number';
   productName = 'Product Name';
-  productQuantity = 'Product Quantity';
-  productCost = 'Product Price';
+  productQuantity = 'Quantity';
+  productCost = 'Price';
   actions = 'Actions';
   amount = 'Amount';
   categories = 'Categories';
   view = 'View';
-  brands = 'Brands'
+  brands = 'Brands';
+  updateProduct = 'Update Product';
+  placeOrder = 'Place Order';
+  myOrders='My Orders'
 
 
 
