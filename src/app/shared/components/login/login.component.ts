@@ -34,14 +34,9 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (res: ServerResponse) => {
           if (res.success) {
-            console.log(res);
             close('Close click');
 
           }
-        },
-        (err) => {
-          console.log(err);
-          this.isInvalid = true;
         }
       );
 
@@ -57,11 +52,6 @@ export class LoginComponent implements OnInit {
           } else {
             this.isInvalid = true;
           }
-        },
-        (err) => {
-          console.log(err);
-          this.isInvalid = true;
-
         }
       );
 

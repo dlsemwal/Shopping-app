@@ -72,14 +72,14 @@
           <tr>
             <td></td>
             <th>Total</th>
-            <th>{{totalQuantity}}</th>
+            <th>{{totalItems?.order_total_qty}}</th>
             <td></td>
-            <th>{{totalAmount | currency : 'INR'}}</th>
+            <th>{{ totalItems?.order_total_price | currency : 'INR' }}</th>
           </tr>
         </tfoot>
       </table>
-      <button class="btn btn-success float-right" (click)='placeOrder()'>
-          {{CONST.placeOrder}}
+      <button class="btn btn-orange float-right" [routerLink]="['pay', totalItems?.order_total_price]">
+        Place Order
       </button>
     </div>
   </div>

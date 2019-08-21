@@ -34,7 +34,6 @@ export class ListComponent implements OnInit {
     this.http.getCategories().subscribe(
       (res: ServerResponse) => {
         this.categories = res.data;
-        console.log(this.categories);
 
       }
     )

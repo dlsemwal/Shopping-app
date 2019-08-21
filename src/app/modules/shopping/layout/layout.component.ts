@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpService } from '../../../core/http/http.service';
+import { ServerResponse } from 'src/app/shared/interfaces/server-response';
 
 @Component({
   selector: 'app-layout',
@@ -8,27 +9,30 @@ import { HttpService } from '../../../core/http/http.service';
 })
 export class LayoutComponent implements OnInit {
   categories;
-  products;
-  res;
-  phoneImages;
-  camImages;
-  constructor(private http: HttpService) {}
+  constructor(private http: HttpService) { }
 
   ngOnInit() {
     this.getProducts();
   }
   getProducts() {
-    this.http.getCategories().subscribe(res => {
-      this.categories = res['data'];
-      this.categories.map(ele => {
-        this.http.getProductsByCat(ele._id, 4).subscribe(res => {
-          ele.data = res['data'];
-        },
-          err => console.log('err2', err)
+    this.http.getCategories().subscribe(
+      (res: ServerResponse) => {
+        this.categories = res.data;
+        console.log(this.categories);
 
+        this.categories.map(
+          item => {
+            this.http.getProductsByCat(item._id, 4)
+              .subscribe(
+                res => {
+                  item.data = res['data'];
+                },
+                err => console.log('err2', err)
+
+              );
+          }
         );
-      });
-    },
+      },
       err => console.log('err3', err)
 
     );

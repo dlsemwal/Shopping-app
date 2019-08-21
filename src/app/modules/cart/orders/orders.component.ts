@@ -10,7 +10,6 @@ import { ServerResponse } from 'src/app/shared/interfaces/server-response';
 })
 export class OrdersComponent implements OnInit {
   orders;
-  message;
   constructor(
     private CONST: ConstService,
     private http: HttpService
@@ -20,14 +19,7 @@ export class OrdersComponent implements OnInit {
     this.http.myOrders()
       .subscribe(
         (res: ServerResponse) => {
-          console.log(res);
-
-          if (typeof res.data == 'string') this.message = res.data;
-          else this.orders = res.data;
-          console.log(this.orders, this.message);
-          
-
-
+          this.orders = res.data;
         }
       )
   }

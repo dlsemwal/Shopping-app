@@ -34,4 +34,4 @@ export const brandsByCatUrl = (id) => {
 
 export const orderUrl = `${server}/order`;
 export const placeOrderUrl = `${orderUrl}/placeOrder`;
-export const myOrdersUrl = `${orderUrl}/placeOrder`;
+export const myOrdersUrl = `${orderUrl}/myOrders`;

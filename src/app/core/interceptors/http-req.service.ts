@@ -3,13 +3,17 @@ import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, Htt
 import { Observable, throwError } from 'rxjs';
 import { LStorageService } from '../services/l-storage.service';
 import { catchError, map } from 'rxjs/operators';
+import { ErrorDialogService } from '../error-handler/error-dialog.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpReqIntercepter implements HttpInterceptor {
 
-  constructor(private lStorage: LStorageService) { }
+  constructor(
+    private lStorage: LStorageService,
+    private errorDialogService: ErrorDialogService
+  ) { }
   intercept(
     req: HttpRequest<any>,
     next: HttpHandler
@@ -29,7 +33,6 @@ export class HttpReqIntercepter implements HttpInterceptor {
       map(
         (ev: HttpEvent<any>) => {
           if (ev instanceof HttpResponse) {
-            console.log(ev);
 
             return ev;
           }
@@ -42,8 +45,8 @@ export class HttpReqIntercepter implements HttpInterceptor {
             reason: err.statusText,
             status: err.status
           }
-          console.log(err);
 
+          this.errorDialogService.openDialog(data);
 
           return throwError(err)
         }

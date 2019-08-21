@@ -50,7 +50,6 @@ export class AuthService {
       .pipe(
         map(
           (res: ServerResponse) => {
-            console.log(res);
 
             if (res.data && res.data.token) {
               this.lStorage.setToken(res.data.token);

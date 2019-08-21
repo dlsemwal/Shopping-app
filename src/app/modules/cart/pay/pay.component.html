@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="modal-header">
+        <h4 class="modal-title">Payement</h4>
+      </div>
+      <form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest">
+        <div class="modal-body">
+          <div class="form-group">
+            <label>
+              Customer Name:
+              <input type="text" class="form-control" formControlName="name" placeholder="John Doe">
+            </label>
+          </div>
+
+          <div class="form-group">
+            <label>
+              Email:
+              <input type="email" class="form-control" formControlName="email" placeholder="john@xyz.com">
+            </label>
+          </div>
+
+          <b>Amount : </b> {{amount ? amount : 0| currency : 'INR'}}
+
+          <div class="form-group">
+            <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+          </div>
+
+
+
+          <div class="modal-footer">
+            <button class="btn btn-orange float-right" type="submit">
+              BUY
+            </button>
+          </div>
+
+
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

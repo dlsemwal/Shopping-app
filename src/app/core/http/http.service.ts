@@ -46,7 +46,7 @@ export class HttpService {
     }
 
 
-    return this.http.put(`${server.cartUrl}/${this.lStorage.userCart}`, payload);
+    return this.http.post(server.cartUrl, payload);
   }
   addToCart(id: string) {
     const payload: Cart = {

@@ -10,12 +10,13 @@ import { ServerResponse } from '../../interfaces/server-response';
 })
 export class ProductComponent implements OnInit {
   @Input('product') data: any;
-  get product() {
-    if (!this.data.info) return this.data
-    if (this.data.info.isInCart) {
-      this.data.data.quantity = this.data.info.quantity
+  product;
+  getProduct() {
+    if (!this.data.info) this.product = this.data
+    else if (this.data.info.isInCart) {
+      this.product = this.data.data
+      this.product.quantity = this.data.info.quantity
     }
-    return this.data.data
   }
 
   constructor(
@@ -23,6 +24,7 @@ export class ProductComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getProduct()
   }
   updateQuantity(item, isAddition) {
     if (isAddition) {
