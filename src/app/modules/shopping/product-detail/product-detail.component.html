@@ -1,9 +1,9 @@
 <div class="container py-5" *ngIf='product'>
   <!-- <button class="btn btn-danger" (click)='onClick()'>get data</button> -->
   <div class="row">
-    <div class="col-sm-7">
+    <div class="col-sm-7 text-center">
       <img [src]="image" class="main" alt="{{product.name}}">
-      <div>
+      <div class="float-left py-3 mx-auto">
         <img class="float-left mx-2" width="100" height="100" *ngFor='let img of product.images' [src]="img"
           (click)='imgChange(img)'>
       </div>
@@ -30,3 +30,9 @@
     </div>
   </div>
 </div>
+
+
+
+<!-- <div class="container" *ngIf="demo | async as dem">
+  {{dem.data | json}}
+</div> -->

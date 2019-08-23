@@ -29,3 +29,49 @@
   </div>
 
 </div>
+
+
+
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-12 pb-3">
+      <app-shopping-carousel></app-shopping-carousel>
+    </div>
+  </div>
+  <div class="container-fluid" *ngIf='categories$ | async as cats'>
+    <div class="row" *ngFor='let item of cats.data; index as i'>
+      <div class="col-12 py-3">
+        <div class="container-fluid overflow-hidden">
+          <h3 class="float-left">
+            {{item.name}}
+          </h3>
+          <button type="button" class="btn btn-orange rounded-0 float-right"
+            [routerLink]="['/products', item.name, item._id]">
+            View All
+          </button>
+        </div>
+        <div class="container-fluid" *ngIf='products(item.name, item._id)'>
+          <div class="row" *ngIf = 'demo$[item.name] | async as products'>
+            <div class="col-sm-3 py-3" *ngFor='let prod of products.data'>
+              <product [product]='prod'></product>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<button class="btn btn-success" (click)='onClick()'>
+  Get Data
+</button>
+<div *ngIf='!demo$.isEmpty'>
+  working .......
+  <div class="row" *ngIf='demo$.Mobile | async as products'>
+    <div class="col-sm-3 py-3" *ngFor='let prod of products.data'>
+      <product [product]='prod'></product>
+    </div>
+  </div>
+</div> -->

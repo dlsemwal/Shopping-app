@@ -45,14 +45,10 @@ export class HttpReqIntercepter implements HttpInterceptor {
             reason: err.statusText,
             status: err.status
           }
-
           this.errorDialogService.openDialog(data);
-
           return throwError(err)
         }
       )
     )
-
-
   }
 }

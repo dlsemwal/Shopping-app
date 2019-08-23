@@ -1,29 +1,30 @@
 <div class="container">
-  <a [routerLink]="['/product', product._id]">
-    <img [src]="product.images[0]" [alt]="product.name" width="400" height="300">
+  <a [routerLink]="['/product', product.data._id]">
+    <img [src]="product.data.images[0] || errImg" [alt]="product.data.name" width="400" height="300">
   </a>
   <div class="desc py-2">
-    <b>{{product.name | summary : 40}}</b>
-    <p class="text-secondary">{{product.brand.description | summary : 60}}</p>
+    <b>{{product.data.name | summary : 40}}</b>
+    <p class="text-secondary">{{product.data.brand.description | summary : 60}}</p>
     <p class="text-primary">
       <del class="text-secondary">
-        {{product.price | currency : 'INR'}}
+        {{product.data.price | currency : 'INR'}}
       </del>
       <span class="text-primary mx-2">
-        {{product.price * (1 - product.discount / 100) | currency : 'INR'}}
+        {{product.data.price * (1 - product.data.discount / 100) | currency : 'INR'}}
       </span>
 
     </p>
 
     <div class="text-center">
-      <div *ngIf='product.quantity; then quantityControl else addCart'></div>
+      <div *ngIf='product.info.quantity; then quantityControl else addCart'></div>
       <ng-template #quantityControl>
         <div class="input-group">
-          <button class="btn btn-sm btn-orange" (click)='updateQuantity(product, false)' [disabled]='product.quantity < 1'>
+          <button class="btn btn-sm btn-orange" (click)='updateQuantity(product, false)'
+            [disabled]='product.info.quantity < 1'>
             -
           </button>
-          <input type="number" class="form-control text-center border-0" [value]='product.quantity' readonly>
-  
+          <input type="number" class="form-control text-center border-0" [value]='product.info.quantity' readonly>
+
           <button class="btn btn-sm btn-orange" (click)='updateQuantity(product, true)'>
             +
           </button>
@@ -35,10 +36,10 @@
         </button>
       </ng-template>
     </div>
-
-
   </div>
-  <!-- <button (click)='onClick()' class="btn btn-danger">
-    get data
-  </button>
-</div> -->
+</div>
+
+
+<!-- <button (click)='onClick()' class="btn btn-danger">
+  get data
+</button> -->

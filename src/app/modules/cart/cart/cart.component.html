@@ -24,6 +24,11 @@
             </th>
           </tr>
         </thead>
+
+        <h5 *ngIf='isEmpty' class="text-danger my-3 mx-4">
+          {{CONST.noItems}}
+        </h5>
+
         <tbody *ngIf='cart'>
           <tr *ngFor='let item of cart; index as i'>
             <td>
@@ -78,7 +83,7 @@
           </tr>
         </tfoot>
       </table>
-      <button class="btn btn-orange float-right" [routerLink]="['pay', totalItems?.order_total_price]">
+      <button *ngIf='cart' class="btn btn-orange float-right" (click)='placeOrder()'>
         Place Order
       </button>
     </div>

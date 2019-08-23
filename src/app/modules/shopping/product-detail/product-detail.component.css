@@ -1,4 +1,5 @@
 img.main {
-    width: 100%;
+    min-width: 50%;
+    max-height: 350px;
     object-fit: contain
 }

@@ -36,6 +36,6 @@ export class LStorageService {
     // return JSON.parse(localStorage.getItem('user')).cart_id;
   }
   get userName() {
-    return this.user.first_name + ' ' + this.user.last_name
+    return (this.user.first_name || '') + ' ' + (this.user.last_name || '');
   }
 }

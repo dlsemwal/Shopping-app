@@ -66,7 +66,15 @@ export class ConstService {
   brands = 'Brands';
   updateProduct = 'Update Product';
   placeOrder = 'Place Order';
-  myOrders='My Orders'
+  myOrders = 'My Orders';
+  noItems = 'No Items!!!';
+  payementSuccess = 'Payement Successful!!!';
+  customerName = 'Customer\'s Name:';
+  email = "Email:";
+  buy = "Buy";
+  total = 'Total';
+  orderNumb = 'Order No.'
+
 
 
 

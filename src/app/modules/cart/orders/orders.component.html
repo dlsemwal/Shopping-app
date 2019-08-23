@@ -8,10 +8,15 @@
     <div class="card-body" *ngIf='orders'>
       <div class="container" *ngFor='let order of orders; index as j'>
         <h4>
-          Order No. : {{j+1}}
+          {{CONST.orderNumb}} : {{j+1}}
         </h4>
         <b>
-          Status : <span class="text-secondary"> {{order?.order_status}} </span>
+          Status :
+          <span [ngClass]="{'text-primary': (order?.order_status == 'pending'),
+              'text-success': (order?.order_status == 'success'),
+               'text-danger': (order?.order_status == 'failed')}">
+            {{order?.order_status}}
+          </span>
         </b>
         <table class="table table-striped table-hover">
           <thead>
@@ -61,12 +66,17 @@
           <tfoot *ngIf='order.cart_items'>
             <tr>
               <td></td>
-              <th>Total</th>
+              <th>{{CONST.total}}</th>
               <th>{{order.order_total_qty}}</th>
               <th>{{order.order_total_price | currency : 'INR'}}</th>
             </tr>
           </tfoot>
+
         </table>
+        <button class="float-right btn btn-orange" *ngIf='order?.order_status != "success"'
+          [routerLink]="[ '/cart', 'pay', order._id, order.order_total_price ]">
+          {{CONST.buy}}
+        </button>
       </div>
 
     </div>

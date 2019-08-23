@@ -22,7 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SharedModule,
     ReactiveFormsModule,
     NgbModule,
-    NgxStripeModule.forRoot('pk_test_nDR7IWEIGLp4a1SBtqKH5eyg'),
+    NgxStripeModule.forRoot('pk_test_wLfshAruwhWsPQdYHPuKoPU1002c5hB3wj'),
   ],
   exports: [],
   providers: []

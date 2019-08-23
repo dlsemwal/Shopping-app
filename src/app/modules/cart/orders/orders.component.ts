@@ -20,6 +20,8 @@ export class OrdersComponent implements OnInit {
       .subscribe(
         (res: ServerResponse) => {
           this.orders = res.data;
+          console.log(this.orders);
+
         }
       )
   }

@@ -9,7 +9,7 @@ const routes: Routes = [
     path: '', children: [
       { path: '', component: CartComponent },
       { path: 'orders', component: OrdersComponent },
-      { path: 'pay/:amount', component: PayComponent }
+      { path: 'pay/:id/:amount', component: PayComponent }
     ]
   }
 ];

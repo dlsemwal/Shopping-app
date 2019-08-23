@@ -37,7 +37,7 @@ export class HttpService {
     return this.http.get(server.cartUrl);
   }
   deleteCart(id: string) {
-    return
+    return this.http.delete(server.dltCartUrl + `/${id}`);
   }
   updateQuantity(id: string, x: number) {
     const payload: Cart = {
@@ -96,5 +96,14 @@ export class HttpService {
   }
   myOrders() {
     return this.http.get(server.myOrdersUrl)
+  }
+
+  payement(order_id, amount, token) {
+    const payload = {
+      token: token,
+      amount: amount,
+      order_id: order_id
+    }
+    return this.http.post(server.orderUrl, payload)
   }
 }

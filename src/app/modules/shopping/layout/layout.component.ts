@@ -8,11 +8,27 @@ import { ServerResponse } from 'src/app/shared/interfaces/server-response';
   styleUrls: ['./layout.component.css']
 })
 export class LayoutComponent implements OnInit {
+  categories$ = this.http.getCategories();
+  demo = {};
+  demo$ = {
+    isEmpty : true
+  };
   categories;
-  constructor(private http: HttpService) { }
+  constructor(
+    private http: HttpService
+  ) { }
+
+  products(name, id) {
+    this.demo$.isEmpty = false;
+    this.demo$[name] = this.http.getProductsByCat(id, 4);
+    return true
+  }
+
 
   ngOnInit() {
     this.getProducts();
+
+
   }
   getProducts() {
     this.http.getCategories().subscribe(
@@ -22,12 +38,14 @@ export class LayoutComponent implements OnInit {
 
         this.categories.map(
           item => {
+            console.log(item._id);
+
             this.http.getProductsByCat(item._id, 4)
               .subscribe(
                 res => {
                   item.data = res['data'];
                 },
-                err => console.log('err2', err)
+                err => console.log('err2')
 
               );
           }
@@ -39,6 +57,9 @@ export class LayoutComponent implements OnInit {
   }
 
 
+  onClick() {
+    console.log(this.demo$);
 
+  }
 
 }

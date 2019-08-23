@@ -7,6 +7,9 @@ import {
   StripeCardComponent
 } from 'ngx-stripe';
 import { ActivatedRoute } from '@angular/router';
+import { HttpService } from 'src/app/core/http/http.service';
+import { ServerResponse } from 'src/app/shared/interfaces/server-response';
+import { ConstService } from 'src/app/core/const/const.service';
 
 
 @Component({
@@ -16,8 +19,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PayComponent implements OnInit {
   @ViewChild(StripeCardComponent) card: StripeCardComponent;
-  // @Input('amount') 
-  amount;
+  amount: number;
+  token: object;
+  order_id: string;
+  isPaid: boolean
 
   cardOptions: ElementOptions = {
     style: {
@@ -44,26 +49,58 @@ export class PayComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private stripeService: StripeService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private http: HttpService,
+    private CONST: ConstService
   ) { }
 
   ngOnInit() {
-    this.amount = this.route.snapshot.paramMap.get('amount')
+    this.amount = +this.route.snapshot.paramMap.get('amount');
+    this.order_id = this.route.snapshot.paramMap.get('id');
     this.stripeTest = this.fb.group({
       name: ['', [Validators.required]],
       email: ['', [Validators.required]]
     });
+    console.log(this.amount, this.order_id);
+
+  }
+
+  pay(
+    id: string,
+    amount: number,
+    token: object
+  ) {
+    this.http.payement(id, amount, token)
+      .subscribe(
+        (res: ServerResponse) => {
+          console.log(res.data);
+
+          if (res.success) this.isPaid = true
+        }
+      )
   }
 
   buy() {
 
     const name = this.stripeTest.get('name').value;
     this.stripeService
-      .createToken(this.card.getCard(), { name })
-      .subscribe(result => {
-        if (result.token) {
-        } else if (result.error) {
+      .createToken(
+        this.card.getCard(),
+        { name }
+      ).subscribe(
+        result => {
+          if (result.token) {
+            console.log(result.token);
+            this.token = result.token;
+            this.pay(
+              this.order_id,
+              Math.ceil(this.amount),
+              this.token
+            )
+
+          } else if (result.error) {
+          }
         }
-      });
+      );
   }
 }

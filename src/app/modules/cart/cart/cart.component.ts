@@ -3,6 +3,7 @@ import { HttpService } from 'src/app/core/http/http.service';
 import { AuthService } from 'src/app/core/authentication/auth.service';
 import { ConstService } from 'src/app/core/const/const.service';
 import { ServerResponse } from 'src/app/shared/interfaces/server-response';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -12,11 +13,13 @@ import { ServerResponse } from 'src/app/shared/interfaces/server-response';
 export class CartComponent implements OnInit {
   cart: any[];
   totalItems: any
+  isEmpty: boolean
 
   constructor(
     private http: HttpService,
     private auth: AuthService,
-    private CONST: ConstService
+    private CONST: ConstService,
+    private router: Router
   ) { }
 
 
@@ -26,11 +29,10 @@ export class CartComponent implements OnInit {
   ngOnInit() {
     this.http.getCart().subscribe(
       (res: any) => {
-
-        this.cart = res.data.carts;
-        this.totalItems = res.data.totalItems[0];
-
-
+        if (res.data.carts.length && res.data.totalItems.length) {
+          this.cart = res.data.carts;
+          console.log(this.cart);
+        } else this.isEmpty = true;
       }
     );
   }
@@ -49,13 +51,22 @@ export class CartComponent implements OnInit {
   }
 
   delete(item) {
+    this.http.deleteCart(item._id)
+      .subscribe(
+        res => console.log(res)
 
+      )
   }
 
   placeOrder() {
     this.http.placeOrder()
       .subscribe(
         (res: ServerResponse) => {
+          console.log(res);
+          if (res.data._id && res.success && res.data.order_total_price) {
+            this.router.navigate(['/cart', 'pay', res.data._id, res.data.order_total_price])
+          }
+
 
         }
       )
