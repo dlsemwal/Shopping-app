@@ -2,7 +2,7 @@
   <h2>
     {{CONST.updateProduct}}
   </h2>
-  <ng-container *ngIf="product">
-    <app-add-form [product]='product'></app-add-form>
+  <ng-container *ngIf="product$ | async as product">
+    <app-add-form [product]='product.data'></app-add-form>
   </ng-container>
 </div>

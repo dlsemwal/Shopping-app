@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HttpService } from 'src/app/core/http/http.service';
-import { Product } from 'src/app/shared/interfaces/product';
-import { ServerResponse } from 'src/app/shared/interfaces/server-response';
+import { Observable } from 'rxjs';
 import { ConstService } from 'src/app/core/const/const.service';
+import { HttpService } from 'src/app/core/http/http.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -12,7 +11,7 @@ import { ConstService } from 'src/app/core/const/const.service';
 })
 export class EditProductComponent implements OnInit {
   productId: string;
-  product: Product;
+  product$: Observable<any>;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,12 +21,7 @@ export class EditProductComponent implements OnInit {
 
   ngOnInit() {
     this.productId = this.route.snapshot.paramMap.get('id');
-    this.http.getProductById(this.productId)
-      .subscribe(
-        (res: ServerResponse) => {
-          this.product = res.data;
-        }
-      )
+    this.product$ = this.http.getProductById(this.productId)
 
   }
 
