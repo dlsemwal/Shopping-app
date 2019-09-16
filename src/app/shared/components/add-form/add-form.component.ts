@@ -111,6 +111,7 @@ export class AddFormComponent implements OnInit {
 
 
   ngOnInit() {
+    if (this.product) this.product.images.map(value => this.images.push(new FormControl(value)))
     this.http.getCategories()
       .subscribe((res: any) => this.categories = res.data);
 
