@@ -71,7 +71,7 @@ export class AuthService {
   logout(): void {
 
     this.clear();
-    this.router.navigate(['/']);
+    this.router.navigate(['']);
   }
 
 }

@@ -1,16 +1,28 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed,
+  inject
+} from "@angular/core/testing";
+import { MatDialogModule, MAT_DIALOG_DATA } from "@angular/material/dialog";
 
-import { ErrorDialogComponent } from './error-dialog.component';
+import { ErrorDialogComponent } from "./error-dialog.component";
 
-describe('ErrorDialogComponent', () => {
+describe("ErrorDialogComponent", () => {
   let component: ErrorDialogComponent;
   let fixture: ComponentFixture<ErrorDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ErrorDialogComponent ]
-    })
-    .compileComponents();
+      declarations: [ErrorDialogComponent],
+      imports: [MatDialogModule],
+      providers: [
+        {
+          provide: MAT_DIALOG_DATA,
+          useValue: {}
+        }
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +31,7 @@ describe('ErrorDialogComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

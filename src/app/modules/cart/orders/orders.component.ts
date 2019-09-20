@@ -11,7 +11,7 @@ import { ServerResponse } from 'src/app/shared/interfaces/server-response';
 export class OrdersComponent implements OnInit {
   orders;
   constructor(
-    private CONST: ConstService,
+    public CONST: ConstService,
     private http: HttpService
   ) { }
 

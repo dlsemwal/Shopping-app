@@ -7,7 +7,7 @@ import { LStorageService } from './core/services/l-storage.service';
 })
 export class AppComponent {
   constructor(
-    private lStorage: LStorageService,
+    public lStorage: LStorageService,
   ) { }
 
 }

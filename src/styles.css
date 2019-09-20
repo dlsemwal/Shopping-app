@@ -1,34 +1,47 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 html, body, .fh {
-	height : 100%;
+  height: 100%;
 }
+
 a {
   cursor: pointer;
 }
+
 li:hover {
   background: #f7631b;
   padding-left: 15px;
 }
+
 ul {
   padding: 0;
 }
+
 .active {
   background: #f7631b;
-
 }
+
 .text-orange {
   color: #f7631b;
 }
+
+.text-orange:hover {
+  color: #ff7937;
+  text-decoration: none
+}
+
 .bg-orange {
   background: #f7631b;
 }
+
 .btn-orange {
   background: #f7631b;
   color: white;
   display: inline-block;
 }
+
 .btn-orange:hover {
   color: #f7631b;
   background: white;

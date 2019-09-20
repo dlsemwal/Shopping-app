@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import * as server from '../../configs/config';
+import { Injectable } from '@angular/core';
 import { Cart } from 'src/app/shared/interfaces/cart';
-import { Product } from 'src/app/shared/interfaces/product';
+
+import * as server from '../../configs/config';
 import { LStorageService } from '../services/l-storage.service';
 
 @Injectable({

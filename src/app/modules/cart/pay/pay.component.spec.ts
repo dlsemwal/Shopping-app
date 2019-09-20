@@ -1,16 +1,26 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { NgxStripeModule, StripeService } from 'ngx-stripe';
 
 import { PayComponent } from './pay.component';
 
-describe('PayComponent', () => {
+describe("PayComponent", () => {
   let component: PayComponent;
   let fixture: ComponentFixture<PayComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PayComponent ]
-    })
-    .compileComponents();
+      declarations: [PayComponent],
+      imports: [
+        NgxStripeModule.forRoot(""),
+        ReactiveFormsModule,
+        RouterModule.forRoot([]),
+        HttpClientModule
+      ],
+      providers: [StripeService]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +29,7 @@ describe('PayComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

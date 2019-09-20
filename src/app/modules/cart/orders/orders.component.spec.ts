@@ -1,16 +1,19 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientModule } from "@angular/common/http";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterModule } from "@angular/router";
+import { SummaryPipe } from "src/app/shared/Pipes/summary.pipe";
 
-import { OrdersComponent } from './orders.component';
+import { OrdersComponent } from "./orders.component";
 
-describe('OrdersComponent', () => {
+describe("OrdersComponent", () => {
   let component: OrdersComponent;
   let fixture: ComponentFixture<OrdersComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrdersComponent ]
-    })
-    .compileComponents();
+      declarations: [OrdersComponent, SummaryPipe],
+      imports: [RouterModule.forRoot([]), HttpClientModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +22,7 @@ describe('OrdersComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
