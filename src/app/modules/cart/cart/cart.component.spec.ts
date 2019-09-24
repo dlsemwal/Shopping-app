@@ -1,9 +1,9 @@
-import { HttpClientModule } from '@angular/common/http';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterModule } from '@angular/router';
-import { SummaryPipe } from 'src/app/shared/Pipes/summary.pipe';
+import { HttpClientModule } from "@angular/common/http";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { RouterModule } from "@angular/router";
+import { SummaryPipe } from "src/app/shared/Pipes/summary.pipe";
 
-import { CartComponent } from './cart.component';
+import { CartComponent } from "./cart.component";
 
 describe("CartComponent", () => {
   let component: CartComponent;
