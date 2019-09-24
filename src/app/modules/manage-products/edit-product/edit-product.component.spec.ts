@@ -1,16 +1,20 @@
+import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { AddFormComponent } from 'src/app/shared/components/add-form/add-form.component';
 
 import { EditProductComponent } from './edit-product.component';
 
-describe('EditProductComponent', () => {
+describe("EditProductComponent", () => {
   let component: EditProductComponent;
   let fixture: ComponentFixture<EditProductComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditProductComponent ]
-    })
-    .compileComponents();
+      declarations: [EditProductComponent, AddFormComponent],
+      imports: [HttpClientModule, ReactiveFormsModule, RouterModule.forRoot([])]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +23,7 @@ describe('EditProductComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

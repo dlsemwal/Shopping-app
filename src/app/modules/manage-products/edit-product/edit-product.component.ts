@@ -5,9 +5,9 @@ import { ConstService } from 'src/app/core/const/const.service';
 import { HttpService } from 'src/app/core/http/http.service';
 
 @Component({
-  selector: 'app-edit-product',
-  templateUrl: './edit-product.component.html',
-  styleUrls: ['./edit-product.component.css']
+  selector: "app-edit-product",
+  templateUrl: "./edit-product.component.html",
+  styleUrls: ["./edit-product.component.css"]
 })
 export class EditProductComponent implements OnInit {
   productId: string;
@@ -16,13 +16,11 @@ export class EditProductComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private http: HttpService,
-    private CONST: ConstService
-  ) { }
+    public CONST: ConstService
+  ) {}
 
   ngOnInit() {
-    this.productId = this.route.snapshot.paramMap.get('id');
-    this.product$ = this.http.getProductById(this.productId)
-
+    this.productId = this.route.snapshot.paramMap.get("id");
+    this.product$ = this.http.getProductById(this.productId);
   }
-
 }

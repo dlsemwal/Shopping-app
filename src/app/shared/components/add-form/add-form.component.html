@@ -85,7 +85,7 @@
       <label for="discount">
         {{CONST.discount}}
       </label>
-      <input name="discount" [value]='product?.discount' type="number" id="discount" class="form-control"
+    <input name="discount" [value]='product?.discount' type="number" id="discount" class="form-control"
         placeholder="%" formControlName='discount' />
       <div class="text-success" *ngIf='discount.touched && discount.valid'>
         {{CONST.valid}}

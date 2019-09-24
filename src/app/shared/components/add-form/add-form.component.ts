@@ -104,7 +104,7 @@ export class AddFormComponent implements OnInit {
   constructor(
     private http: HttpService,
     // tslint:disable-next-line:no-shadowed-variable
-    private CONST: ConstService
+    public CONST: ConstService
   ) { }
 
 

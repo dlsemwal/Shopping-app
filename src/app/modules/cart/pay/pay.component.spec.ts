@@ -1,10 +1,11 @@
-import { HttpClientModule } from '@angular/common/http';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
-import { NgxStripeModule, StripeService } from 'ngx-stripe';
+import { HttpClientModule } from "@angular/common/http";
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { ReactiveFormsModule } from "@angular/forms";
+import { RouterModule } from "@angular/router";
+import { NgxStripeModule, StripeService } from "ngx-stripe";
 
-import { PayComponent } from './pay.component';
+import { PayComponent } from "./pay.component";
+import { environment } from "src/environments/environment";
 
 describe("PayComponent", () => {
   let component: PayComponent;
@@ -14,7 +15,7 @@ describe("PayComponent", () => {
     TestBed.configureTestingModule({
       declarations: [PayComponent],
       imports: [
-        NgxStripeModule.forRoot(""),
+        NgxStripeModule.forRoot(environment.stripePublishableKey),
         ReactiveFormsModule,
         RouterModule.forRoot([]),
         HttpClientModule

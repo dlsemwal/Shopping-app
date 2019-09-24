@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="product">
   <a [routerLink]="['/product', product.data._id]">
     <img [src]="product.data.images[0] || errImg" [alt]="product.data.name" width="400" height="300">
   </a>

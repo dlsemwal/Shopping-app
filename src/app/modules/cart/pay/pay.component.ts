@@ -51,7 +51,7 @@ export class PayComponent implements OnInit {
     private stripeService: StripeService,
     private route: ActivatedRoute,
     private http: HttpService,
-    private CONST: ConstService
+    public CONST: ConstService
   ) { }
 
   ngOnInit() {

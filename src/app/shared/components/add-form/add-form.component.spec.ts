@@ -1,16 +1,18 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { AddFormComponent } from './add-form.component';
+import { AddFormComponent } from "./add-form.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
 
-describe('AddFormComponent', () => {
+describe("AddFormComponent", () => {
   let component: AddFormComponent;
   let fixture: ComponentFixture<AddFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddFormComponent ]
-    })
-    .compileComponents();
+      declarations: [AddFormComponent],
+      imports: [ReactiveFormsModule, HttpClientModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +21,7 @@ describe('AddFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

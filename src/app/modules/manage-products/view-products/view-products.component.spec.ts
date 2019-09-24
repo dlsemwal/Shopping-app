@@ -1,16 +1,24 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { ViewProductsComponent } from './view-products.component';
+import { ViewProductsComponent } from "./view-products.component";
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
+import { RouterModule } from "@angular/router";
+import { SummaryPipe } from "src/app/shared/Pipes/summary.pipe";
+import { HttpClientModule } from "@angular/common/http";
 
-describe('ViewProductsComponent', () => {
+describe("ViewProductsComponent", () => {
   let component: ViewProductsComponent;
   let fixture: ComponentFixture<ViewProductsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewProductsComponent ]
-    })
-    .compileComponents();
+      declarations: [ViewProductsComponent, SummaryPipe],
+      imports: [
+        InfiniteScrollModule,
+        HttpClientModule,
+        RouterModule.forRoot([])
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +27,7 @@ describe('ViewProductsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
