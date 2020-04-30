@@ -31,7 +31,7 @@
     "core-js": "^2.5.4",
     "datatables.net": "^1.10.19",
     "datatables.net-dt": "^1.10.19",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jwt-decode": "^2.2.0",
     "material-design-icons": "^3.0.1",
     "ngx-infinite-scroll": "^8.0.0",
